@@ -1,10 +1,12 @@
 module.exports = {
-    plugins: ['prettier'],
   env: {
     browser: true,
     es2021: true,
   },
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb-base',
+    'prettier'
+  ],
   overrides: [
     {
       env: {
@@ -23,5 +25,10 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'semi': 'warn',
+    'import/prefer-default-export': [
+      ('off' || 'warn' || 'error'),
+      { target: 'single' },
+    ],
   },
 };

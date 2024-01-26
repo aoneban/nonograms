@@ -1,5 +1,6 @@
 import './index.scss';
 import { data1 } from './modules/data';
+import { handlerClicks } from './modules/helpers';
 
 class GenerateGame {
   constructor(matrix) {
@@ -12,6 +13,7 @@ class GenerateGame {
     const result = [];
     let newArr = [];
     result.push(newArr);
+
     let ind = 0;
 
     for (let i = 0; i < arr.length; i += 1) {
@@ -73,23 +75,25 @@ class GenerateGame {
     root.setAttribute('id', 'root');
     const elementsWrapper = document.createElement('div');
     elementsWrapper.classList.add('elements-wrapper');
+    elementsWrapper.addEventListener('click', handlerForCurrentClick);
+    elementsWrapper.addEventListener('contextmenu', handlerForRightMouseClick);
 
     const fieldsWrapper = document.createElement('div');
-    fieldsWrapper.classList.add('field-wrapper')
+    fieldsWrapper.classList.add('field-wrapper');
 
     for (let i = 0; i < matrix.length; i += 1) {
       for (let j = 0; j < matrix[i].length; j += 1) {
         const newElem = document.createElement('div');
         if (matrix[i][j]) {
-          newElem.classList.add('black', `row${i}`);
+          newElem.classList.add('elem', 'black', `row${i}`);
           elementsWrapper.append(newElem);
         } else {
-          newElem.classList.add('gray', `row${i}`);
+          newElem.classList.add('elem', 'gray', `row${i}`);
           elementsWrapper.append(newElem);
         }
       }
     }
-    fieldsWrapper.append(elementsWrapper)
+    fieldsWrapper.append(elementsWrapper);
 
     root.append(fieldsWrapper);
     document.body.append(root);
@@ -102,12 +106,12 @@ class GenerateGame {
     const root = document.createElement('div');
     root.setAttribute('class', 'prompt-left');
 
-    const wrapper = document.querySelector('.elements-wrapper')
+    const wrapper = document.querySelector('.elements-wrapper');
 
     for (let i = 0; i < this.resultArrayLeft.length; i += 1) {
       const newElem = document.createElement('div');
       const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' ');
-      newElem.classList.add('prompt-left__value')
+      newElem.classList.add('prompt-left__value');
       newElem.textContent = value;
       root.append(newElem);
     }
@@ -119,12 +123,12 @@ class GenerateGame {
     const root = document.createElement('div');
     root.setAttribute('class', 'prompt-top');
 
-    const wrapper = document.querySelector('.field-wrapper')
+    const wrapper = document.querySelector('.field-wrapper');
 
     for (let i = 0; i < this.resultArrayTop.length; i += 1) {
       const newElem = document.createElement('div');
       const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
-      newElem.classList.add('prompt-top__value')
+      newElem.classList.add('prompt-top__value');
       newElem.textContent = value;
       root.append(newElem);
     }
@@ -135,3 +139,16 @@ class GenerateGame {
 
 const firstGame = new GenerateGame(data1);
 firstGame.createGame(data1);
+
+function handlerForCurrentClick(e) {
+  const currentElement = e.target;
+  currentElement.classList.toggle('show-color');
+  handlerClicks();
+}
+
+function handlerForRightMouseClick(e) {
+  e.preventDefault();
+  const currentElement = e.target;
+  currentElement.classList.toggle('crossed')
+  console.log(currentElement)
+}

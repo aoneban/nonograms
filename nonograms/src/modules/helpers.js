@@ -10,3 +10,16 @@ export function handlerClicks() {
       alert('WIN!');
     }
   }
+
+export function handlerForCurrentClick(e) {
+    const currentElement = e.target;
+    currentElement.classList.toggle('show-color');
+    handlerClicks();
+  }
+  
+export function handlerForRightMouseClick(e) {
+    e.preventDefault();
+    const currentElement = e.target;
+    currentElement.classList.toggle('crossed')
+    console.log(currentElement)
+  }

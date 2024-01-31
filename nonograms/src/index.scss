@@ -20,6 +20,11 @@ h1 {
   top: 20px;
 }
 
+#root {
+  position: relative;
+  bottom: 2rem;
+}
+
 .field-wrapper {
   display: flex;
   justify-content: center;
@@ -202,7 +207,7 @@ h1 {
   content: '';
   position: absolute;
   width: 2px;
-  left: 1.1rem;
+  left: 44%;
   height: 100%;
   background-color: black;
 }
@@ -345,4 +350,21 @@ h1 {
 .row5-13,
 .row5-14 {
   border-top: 2px solid gray;
+}
+
+#myDropdown {
+  display: none;
+  padding: 8px;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.class-block {
+  display: block!important;
+}
+
+#myInput {
+  padding: 8px;
 }

@@ -2,8 +2,8 @@ import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
 
-const firstGame = new GenerateGame(matrices.one);
-firstGame.createGame(matrices.one);
+const firstGame = new GenerateGame(matrices['one (5x5)']);
+firstGame.createGame(matrices['one (5x5)']);
 
 function createInput() {
   const wrapper = document.createElement('div');
@@ -13,7 +13,7 @@ function createInput() {
 
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
-  input.setAttribute('placeholder', 'Chose of list');
+  input.setAttribute('placeholder', 'Chose game of the list');
   input.setAttribute('id', 'myInput');
 
   wrapper.append(input);
@@ -29,13 +29,13 @@ function createInput() {
   });
 
   wrapper.append(matrixWrap);
-  document.body.append(wrapper);
+  document.body.prepend(wrapper);
 }
 
 createInput();
 
 function handlerForInput() {
-  document.getElementById('myInput').addEventListener('mouseover', function () {
+  document.getElementById('myInput').addEventListener('click', function () {
     document.getElementById('myDropdown').classList.add('class-block');
   });
 
@@ -52,6 +52,7 @@ handlerForInput();
 function choseNewGame() {
   const drop = document.getElementById('myDropdown');
   drop.addEventListener('click', (event) => {
+    document.querySelector('.name-game').remove();
     document.getElementById('root').remove();
     const game = event.target.innerText;
     const newGame = new GenerateGame(matrices[game]);

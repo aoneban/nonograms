@@ -58,7 +58,7 @@ h1 {
 
 .gray {
   width: 20%;
-  height: 40px;
+  height: 60px;
   background-color: white;
   border: 1px solid gray;
 }
@@ -70,7 +70,7 @@ h1 {
 
 .elem {
   width: 20%;
-  height: 40px;
+  height: 60px;
   background-color: white;
   position: relative;
   cursor: pointer !important;
@@ -99,8 +99,8 @@ h1 {
 .prompt-left {
   width: 5%;
   &__value {
-    width: 2.6rem;
-    height: 40px;
+    width: 4.6rem;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,8 +135,8 @@ h1 {
 .prompt-top {
   display: flex;
   flex-direction: row;
-  width: 15rem;
-  height: 40px;
+  width: 92.8%;
+  height: 60px;
   justify-content: end;
   align-items: center;
   background: lightgrey;
@@ -149,7 +149,7 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 19px;
+    padding: 0 29px;
     font-size: 0.7rem;
   }
 }
@@ -363,6 +363,10 @@ h1 {
 
 .class-block {
   display: block!important;
+}
+
+.input-wrapper {
+  margin: 10px;
 }
 
 #myInput {

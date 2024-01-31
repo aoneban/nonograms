@@ -75,6 +75,7 @@ export default class GenerateGame {
     root.setAttribute('id', 'root');
 
     const nameGame = document.createElement('h1');
+    nameGame.classList.add('name-game');
     nameGame.textContent = 'Nonograms';
 
     const elementsWrapper = document.createElement('div');
@@ -91,11 +92,11 @@ export default class GenerateGame {
         if (matrix.length <= 5) {
           if (matrix[i][j]) {
             newElem.classList.add('elem', 'black', `row${i}-${j}`);
-            elementsWrapper.style.width = '200px';
+            elementsWrapper.style.width = '300px';
             elementsWrapper.append(newElem);
           } else {
             newElem.classList.add('elem', 'gray', `row${i}-${j}`);
-            elementsWrapper.style.width = '200px';
+            elementsWrapper.style.width = '300px';
             elementsWrapper.append(newElem);
           }
         } else if (matrix.length > 5 && matrix.length <= 10) {

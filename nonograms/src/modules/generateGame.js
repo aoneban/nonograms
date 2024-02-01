@@ -1,5 +1,6 @@
 import { handlerForCurrentClick } from './helpers';
 import { handlerForRightMouseClick } from './helpers';
+import { generateTimer } from './helpers';
 
 export default class GenerateGame {
   constructor(matrix) {
@@ -78,6 +79,11 @@ export default class GenerateGame {
     nameGame.classList.add('name-game');
     nameGame.textContent = 'Nonograms';
 
+    const timer = document.createElement('p');
+    timer.setAttribute('id', 'timer');
+    timer.classList.add('count-time');
+    timer.textContent = '00:00';
+
     const elementsWrapper = document.createElement('div');
     elementsWrapper.classList.add('elements-wrapper');
     elementsWrapper.addEventListener('click', handlerForCurrentClick);
@@ -91,32 +97,30 @@ export default class GenerateGame {
         const newElem = document.createElement('div');
         if (matrix.length <= 5) {
           if (matrix[i][j]) {
-            newElem.classList.add('elem', 'black', `row${i}-${j}`);
-            elementsWrapper.style.width = '300px';
+            newElem.classList.add('base-elem', 'elem', 'black', `row${i}-${j}`);
             elementsWrapper.append(newElem);
           } else {
-            newElem.classList.add('elem', 'gray', `row${i}-${j}`);
-            elementsWrapper.style.width = '300px';
+            newElem.classList.add('base-elem', 'elem', 'gray', `row${i}-${j}`);
             elementsWrapper.append(newElem);
           }
         } else if (matrix.length > 5 && matrix.length <= 10) {
           if (matrix[i][j]) {
-            newElem.classList.add('elem2', 'black', `row${i}-${j}`);
-            elementsWrapper.style.width = '300px';
+            newElem.classList.add('base-elem', 'elem2', 'black', `row${i}-${j}`);
+            newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
           } else {
-            newElem.classList.add('elem2', 'gray', `row${i}-${j}`);
-            elementsWrapper.style.width = '300px';
+            newElem.classList.add('base-elem', 'elem2', 'gray', `row${i}-${j}`);
+            newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
           }
         } else if (matrix.length > 10) {
           if (matrix[i][j]) {
-            newElem.classList.add('elem3', 'black', `row${i}-${j}`);
-            elementsWrapper.style.width = '300px';
+            newElem.classList.add('base-elem', 'elem3', 'black', `row${i}-${j}`);
+            newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
           } else {
-            newElem.classList.add('elem3', 'gray', `row${i}-${j}`);
-            elementsWrapper.style.width = '300px';
+            newElem.classList.add('base-elem', 'elem3', 'gray', `row${i}-${j}`);
+            newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
           }
         }
@@ -124,7 +128,7 @@ export default class GenerateGame {
     }
     fieldsWrapper.append(elementsWrapper);
 
-    root.append(fieldsWrapper);
+    root.append(timer, fieldsWrapper);
     document.body.append(nameGame, root);
 
     this.promptLeft();

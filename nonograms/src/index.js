@@ -2,6 +2,8 @@ import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
 
+export let nameGame;
+
 const firstGame = new GenerateGame(matrices['one (5x5)']);
 firstGame.createGame(matrices['one (5x5)']);
 
@@ -41,7 +43,10 @@ function handlerForInput() {
 
   document.getElementById('myDropdown').addEventListener('click', function (event) {
     if (event.target.tagName === 'A') {
-      document.getElementById('myInput').value = event.target.textContent;
+      nameGame = document.getElementById('myInput').value;
+      nameGame = event.target.textContent;
+      console.log(nameGameForModal(nameGame))
+      
       document.getElementById('myDropdown').classList.remove('class-block');
     }
   });
@@ -61,3 +66,7 @@ function choseNewGame() {
 }
 
 choseNewGame();
+
+export function nameGameForModal(value = 'one (5x5)') {
+  return ` The nonogram was: ${value}`;
+} 

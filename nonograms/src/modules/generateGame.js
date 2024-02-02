@@ -1,6 +1,10 @@
+import { nameGameForModal } from "../index";
+import { nameGame } from "../index";
 
 let intervalRunning = false;
 let handlerInterval;
+let seconds = 0;
+let minutes = 0;
 
 export default class GenerateGame {
   constructor(matrix) {
@@ -72,7 +76,8 @@ export default class GenerateGame {
   }
 
   createGame(matrix) {
-
+    seconds = 0;
+    minutes = 0;
     intervalRunning = false;
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
@@ -211,8 +216,6 @@ function generateTimer(e) {
     intervalRunning = true;
     const timer = document.getElementById('timer');
     console.log(timer);
-    let seconds = 0;
-    let minutes = 0;
     if (!e.target.classList.contains('show-color')) {
       handlerInterval = setInterval(() => {
         if (seconds === 60) {
@@ -237,7 +240,10 @@ function handlerClicks() {
     }
   });
   if (resultLength.length === 0) {
-    alert('WIN!');
+    let nameGameToAlert = nameGameForModal(nameGame)
+    const sec = (seconds - 1).toString().padStart(2, '0');
+    const min = minutes.toString().padStart(2, '0');
+    alert(`You WON! ${nameGameToAlert}. Your time is: ${min}:${sec}`);
     document.removeEventListener('click', generateTimer);
     clearInterval(handlerInterval);
     intervalRunning = false;

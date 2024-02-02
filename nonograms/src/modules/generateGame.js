@@ -1,6 +1,6 @@
-import { handlerForCurrentClick } from './helpers';
-import { handlerForRightMouseClick } from './helpers';
-import { generateTimer } from './helpers';
+
+let intervalRunning = false;
+let handlerInterval;
 
 export default class GenerateGame {
   constructor(matrix) {
@@ -72,6 +72,8 @@ export default class GenerateGame {
   }
 
   createGame(matrix) {
+
+    intervalRunning = false;
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
 
@@ -98,9 +100,11 @@ export default class GenerateGame {
         if (matrix.length <= 5) {
           if (matrix[i][j]) {
             newElem.classList.add('base-elem', 'elem', 'black', `row${i}-${j}`);
+            newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
           } else {
             newElem.classList.add('base-elem', 'elem', 'gray', `row${i}-${j}`);
+            newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
           }
         } else if (matrix.length > 5 && matrix.length <= 10) {
@@ -199,4 +203,56 @@ export default class GenerateGame {
 
     wrapper.before(root);
   }
+}
+
+
+function generateTimer(e) {
+  if (!intervalRunning) {
+    intervalRunning = true;
+    const timer = document.getElementById('timer');
+    console.log(timer);
+    let seconds = 0;
+    let minutes = 0;
+    if (!e.target.classList.contains('show-color')) {
+      handlerInterval = setInterval(() => {
+        if (seconds === 60) {
+          minutes += 1;
+          seconds = 0;
+        }
+        const sec = seconds.toString().padStart(2, '0');
+        const min = minutes.toString().padStart(2, '0');
+        timer.innerHTML = `${min}:${sec}`;
+        seconds += 1;
+      }, 1000);
+    }
+  }
+}
+
+function handlerClicks() {
+  const resultLength = new Array();
+  const blacksFields = document.querySelectorAll('.black');
+  blacksFields.forEach((item) => {
+    if (!item.classList.contains('show-color')) {
+      resultLength.push(item);
+    }
+  });
+  if (resultLength.length === 0) {
+    alert('WIN!');
+    document.removeEventListener('click', generateTimer);
+    clearInterval(handlerInterval);
+    intervalRunning = false;
+  }
+}
+
+function handlerForCurrentClick(e) {
+  const currentElement = e.target;
+  currentElement.classList.toggle('show-color');
+  handlerClicks();
+}
+
+function handlerForRightMouseClick(e) {
+  e.preventDefault();
+  const currentElement = e.target;
+  currentElement.classList.toggle('crossed');
+  console.log(currentElement);
 }

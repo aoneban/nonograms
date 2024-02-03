@@ -1,7 +1,7 @@
 import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
-import { resetGameFunction } from './modules/generateGame';
+import { resetGameFunction, showGameSolution } from './modules/generateGame';
 
 export let nameGame;
 
@@ -58,6 +58,7 @@ function createInput() {
   const solutionGameButton = document.createElement('button');
   solutionGameButton.classList.add('btn');
   solutionGameButton.textContent = 'Solution';
+  solutionGameButton.addEventListener('click', showGameSolution)
 
   const resetGameButton = document.createElement('button');
   resetGameButton.classList.add('btn');

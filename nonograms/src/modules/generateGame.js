@@ -318,3 +318,12 @@ export function resetGameFunction() {
   seconds = 0;
   minutes = 0;
 }
+
+export function showGameSolution() {
+  const elements = document.querySelectorAll('.base-elem');
+  elements.forEach((el) => {
+    if (el.classList.contains('black')) {
+      el.classList.add('show-color');
+    }
+  });
+}

@@ -33,6 +33,18 @@ function createInput() {
       <td>four (5x5)</td>
       <td>04:20</td>
     </tr>
+    <tr>
+      <td>six (10x10)</td>
+      <td>06:38</td>
+    </tr>
+    <tr>
+      <td>eleven (15x15)</td>
+      <td>09:51</td>
+    </tr>
+    <tr>
+      <td>fifteen (15x15)</td>
+      <td>12:41</td>
+    </tr>
   </tbody>
 </table>
   `;
@@ -40,16 +52,28 @@ function createInput() {
   const randomGameButton = document.createElement('button');
   randomGameButton.classList.add('btn');
   randomGameButton.textContent = 'Random game';
+  randomGameButton.addEventListener('click', choseRandomGame);
 
   const solutionGameButton = document.createElement('button');
   solutionGameButton.classList.add('btn');
   solutionGameButton.textContent = 'Solution';
 
+  const resetGameButton = document.createElement('button');
+  resetGameButton.classList.add('btn');
+  resetGameButton.textContent = 'Reset Game';
+
   const changeThemeButton = document.createElement('button');
   changeThemeButton.classList.add('btn');
   changeThemeButton.textContent = 'Change Theme';
 
-  wrapper.append(gameResults, changeThemeButton, randomGameButton, solutionGameButton, input);
+  wrapper.append(
+    gameResults,
+    changeThemeButton,
+    randomGameButton,
+    resetGameButton,
+    solutionGameButton,
+    input,
+  );
 
   const matrixWrap = document.createElement('div');
   matrixWrap.setAttribute('id', 'myDropdown');
@@ -87,8 +111,7 @@ handlerForInput();
 function choseNewGame() {
   const drop = document.getElementById('myDropdown');
   drop.addEventListener('click', (event) => {
-    document.querySelector('.name-game').remove();
-    document.getElementById('root').remove();
+    removeElements();
     const game = event.target.innerText;
     const newGame = new GenerateGame(matrices[game]);
     newGame.createGame(matrices[game]);
@@ -97,6 +120,20 @@ function choseNewGame() {
 
 choseNewGame();
 
+function choseRandomGame() {
+  const matrixValues = Object.keys(matrices);
+  const randomIndex = Math.floor(Math.random() * matrixValues.length);
+  const randomGame = matrixValues[randomIndex];
+  removeElements();
+  const newGame = new GenerateGame(matrices[randomGame]);
+  newGame.createGame(matrices[randomGame]);
+}
+
 export function nameGameForModal(value = 'one (5x5)') {
   return ` The nonogram was: ${value}`;
+}
+
+function removeElements() {
+  document.querySelector('.name-game').remove();
+  document.getElementById('root').remove();
 }

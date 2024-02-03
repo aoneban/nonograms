@@ -303,3 +303,18 @@ function showResultsInTable(arr) {
     tableBody.appendChild(row);
   });
 }
+
+export function resetGameFunction() {
+  const elements = document.querySelectorAll('.base-elem');
+  elements.forEach((el) => {
+    if (el.classList.contains('show-color')) {
+      el.classList.remove('show-color');
+    }
+  });
+  clearInterval(handlerInterval);
+  intervalRunning = false;
+  const timer = document.getElementById('timer');
+  timer.textContent = '00:00';
+  seconds = 0;
+  minutes = 0;
+}

@@ -18,7 +18,38 @@ function createInput() {
   input.setAttribute('placeholder', 'Chose game of the list');
   input.setAttribute('id', 'myInput');
 
-  wrapper.append(input);
+  const gameResults = document.createElement('div');
+  gameResults.classList.add('game-results');
+  gameResults.innerHTML = `
+  <table>
+  <thead>
+    <tr>
+      <th>Name game</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody id="resultsTableBody">
+    <tr>
+      <td>four (5x5)</td>
+      <td>04:20</td>
+    </tr>
+  </tbody>
+</table>
+  `;
+
+  const randomGameButton = document.createElement('button');
+  randomGameButton.classList.add('btn');
+  randomGameButton.textContent = 'Random game';
+
+  const solutionGameButton = document.createElement('button');
+  solutionGameButton.classList.add('btn');
+  solutionGameButton.textContent = 'Solution';
+
+  const changeThemeButton = document.createElement('button');
+  changeThemeButton.classList.add('btn');
+  changeThemeButton.textContent = 'Change Theme';
+
+  wrapper.append(gameResults, changeThemeButton, randomGameButton, solutionGameButton, input);
 
   const matrixWrap = document.createElement('div');
   matrixWrap.setAttribute('id', 'myDropdown');
@@ -45,8 +76,7 @@ function handlerForInput() {
     if (event.target.tagName === 'A') {
       nameGame = document.getElementById('myInput').value;
       nameGame = event.target.textContent;
-      console.log(nameGameForModal(nameGame))
-      
+      document.getElementById('myInput').placeholder = nameGame;
       document.getElementById('myDropdown').classList.remove('class-block');
     }
   });
@@ -69,4 +99,4 @@ choseNewGame();
 
 export function nameGameForModal(value = 'one (5x5)') {
   return ` The nonogram was: ${value}`;
-} 
+}

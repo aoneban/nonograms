@@ -1,10 +1,11 @@
-import { nameGameForModal } from "../index";
-import { nameGame } from "../index";
+import { nameGameForModal } from '../index';
+import { nameGame } from '../index';
 
 let intervalRunning = false;
 let handlerInterval;
 let seconds = 0;
 let minutes = 0;
+let counterResults = 1;
 
 export default class GenerateGame {
   constructor(matrix) {
@@ -210,7 +211,6 @@ export default class GenerateGame {
   }
 }
 
-
 function generateTimer(e) {
   if (!intervalRunning) {
     intervalRunning = true;
@@ -240,13 +240,16 @@ function handlerClicks() {
     }
   });
   if (resultLength.length === 0) {
-    let nameGameToAlert = nameGameForModal(nameGame)
+    let nameGameToAlert = nameGameForModal(nameGame);
     const sec = (seconds - 1).toString().padStart(2, '0');
     const min = minutes.toString().padStart(2, '0');
     alert(`You WON! ${nameGameToAlert}. Your time is: ${min}:${sec}`);
+    localStorage.setItem(nameGameToAlert, `${min}:${sec}`);
+    writeResultToTable(nameGameToAlert, counterResults);
     document.removeEventListener('click', generateTimer);
     clearInterval(handlerInterval);
     intervalRunning = false;
+    counterResults += 1;
   }
 }
 
@@ -261,4 +264,42 @@ function handlerForRightMouseClick(e) {
   const currentElement = e.target;
   currentElement.classList.toggle('crossed');
   console.log(currentElement);
+}
+
+const results = [];
+
+function writeResultToTable(game, counter) {
+  const nameGame = game.replace(' The nonogram was:', '').trim();
+  const gameResult = localStorage.getItem(game);
+  results.push({ id: counter, game: nameGame, result: gameResult });
+
+  results.sort((a, b) => {
+    const timeA = Number(a.result.split(':').join(''));
+    const timeB = Number(b.result.split(':').join(''));
+
+    return timeA - timeB;
+  });
+  console.log(results);
+  showResultsInTable(results);
+}
+
+function showResultsInTable(arr) {
+  const maxArrayLength = 5;
+
+  if (arr.length > maxArrayLength) {
+    arr = arr.filter((el) => el.id > counterResults - maxArrayLength);
+  }
+  const tableBody = document.getElementById('resultsTableBody');
+  tableBody.innerHTML = '';
+
+  arr.forEach((el) => {
+    const row = document.createElement('tr');
+    const tdOne = document.createElement('td');
+    const tdTwo = document.createElement('td');
+    tdOne.textContent = el.game;
+    tdTwo.textContent = el.result;
+
+    row.append(tdOne, tdTwo);
+    tableBody.appendChild(row);
+  });
 }

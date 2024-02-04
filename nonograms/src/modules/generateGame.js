@@ -82,7 +82,7 @@ export default class GenerateGame {
     intervalRunning = false;
     seconds = 0;
     minutes = 0;
-    
+
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
 
@@ -187,7 +187,7 @@ export default class GenerateGame {
 
     for (let i = 0; i < this.resultArrayTop.length; i += 1) {
       if (this.resultArrayTop.length <= 5) {
-        root.classList.add('prompt-top')
+        root.classList.add('prompt-top');
         const newElem = document.createElement('div');
         const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
         newElem.classList.add('prompt-top__value');
@@ -312,11 +312,13 @@ export function resetGameFunction() {
     }
   });
   clearInterval(handlerInterval);
-  intervalRunning = false;
-  const timer = document.getElementById('timer');
-  timer.textContent = '00:00';
-  seconds = 0;
   minutes = 0;
+  seconds = 0;
+  const timer = document.getElementById('timer');
+  const sec = seconds.toString().padStart(2, '0');
+  const min = minutes.toString().padStart(2, '0');
+  timer.innerHTML = `${min}:${sec}`;
+  intervalRunning = false;
 }
 export function choseNewGame() {
   const drop = document.getElementById('myDropdown');
@@ -335,11 +337,11 @@ export function removeElements() {
 
 export function showGameSolution() {
   const elements = document.querySelectorAll('.base-elem');
-  elements.forEach(el => {
-    if(el.classList.contains('show-color')) {
+  elements.forEach((el) => {
+    if (el.classList.contains('show-color')) {
       el.classList.remove('show-color');
     }
-  })
+  });
   elements.forEach((el) => {
     if (el.classList.contains('black')) {
       el.classList.add('show-color');
@@ -370,12 +372,12 @@ export function saveGameFunction() {
     const topPrompt = getPromptTopFromLocalStorage();
     const leftPrompt = getPromptLeftFromLocalStorage();
     restoreOldGame(oldGame, topPrompt, leftPrompt);
-    getOldTimeFromLocalStorage()
+    getOldTimeFromLocalStorage();
     // f1()end
   }
 }
 
-function getOldTimeFromLocalStorage(){
+function getOldTimeFromLocalStorage() {
   const timer = document.getElementById('timer');
   const localMinutes = localStorage.getItem('savedMinutes');
   const localSeconds = localStorage.getItem('savedSeconds');
@@ -383,8 +385,8 @@ function getOldTimeFromLocalStorage(){
   minutes = Number(localMinutes);
   const sec = localSeconds.toString().padStart(2, '0');
   const min = localMinutes.toString().padStart(2, '0');
-        timer.innerHTML = `${min}:${sec}`;
-        seconds += 1;
+  timer.innerHTML = `${min}:${sec}`;
+  seconds += 1;
 }
 
 function getPromptTopFromLocalStorage() {

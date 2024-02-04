@@ -350,7 +350,7 @@ export function showGameSolution() {
 export function saveGameFunction() {
   const button = document.querySelector('.save-game');
   if (button.innerHTML === 'Save Game') {
-    button.innerHTML = 'Continue Game';
+    button.innerHTML = 'Continue old Game';
     // записываю сохраненную игру в локалсторейдж
     const elementsWrapper = document.querySelector('.elements-wrapper');
     const promptTop = document.querySelector('.prompt-top');
@@ -361,6 +361,8 @@ export function saveGameFunction() {
     localStorage.setItem('savedElements', elementsString);
     localStorage.setItem('savedPromptTop', promptTopString);
     localStorage.setItem('savedPromptLeft', promptLeftString);
+    localStorage.setItem('savedMinutes', minutes);
+    localStorage.setItem('savedSeconds', seconds);
   } else {
     button.innerHTML = 'Save Game';
     // f1() start получаю данные из локалсторейдж и восстанавливаю структуру DOM
@@ -368,8 +370,21 @@ export function saveGameFunction() {
     const topPrompt = getPromptTopFromLocalStorage();
     const leftPrompt = getPromptLeftFromLocalStorage();
     restoreOldGame(oldGame, topPrompt, leftPrompt);
+    getOldTimeFromLocalStorage()
     // f1()end
   }
+}
+
+function getOldTimeFromLocalStorage(){
+  const timer = document.getElementById('timer');
+  const localMinutes = localStorage.getItem('savedMinutes');
+  const localSeconds = localStorage.getItem('savedSeconds');
+  seconds = Number(localSeconds);
+  minutes = Number(localMinutes);
+  const sec = localSeconds.toString().padStart(2, '0');
+  const min = localMinutes.toString().padStart(2, '0');
+        timer.innerHTML = `${min}:${sec}`;
+        seconds += 1;
 }
 
 function getPromptTopFromLocalStorage() {
@@ -399,6 +414,7 @@ function getItemFromLocalStorage() {
   container = container.firstChild;
   Array.from(container.children).forEach((el) => {
     el.addEventListener('click', handlerForCurrentClick);
+    el.addEventListener('contextmenu', handlerForRightMouseClick);
   });
   return container;
 }

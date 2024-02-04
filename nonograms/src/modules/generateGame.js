@@ -157,19 +157,19 @@ export default class GenerateGame {
     for (let i = 0; i < this.resultArrayLeft.length; i += 1) {
       if (this.resultArrayLeft.length <= 5) {
         const newElem = document.createElement('div');
-        const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' ');
+        const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' | ');
         newElem.classList.add('prompt-left__value');
         newElem.textContent = value;
         root.append(newElem);
       } else if (this.resultArrayLeft.length > 5 && this.resultArrayLeft.length <= 10) {
         const newElem = document.createElement('div');
-        const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' ');
+        const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' | ');
         newElem.classList.add('prompt-left__value2');
         newElem.textContent = value;
         root.append(newElem);
       } else if (this.resultArrayLeft.length > 10) {
         const newElem = document.createElement('div');
-        const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' ');
+        const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' | ');
         newElem.classList.add('prompt-left__value3');
         newElem.textContent = value;
         root.append(newElem);
@@ -189,21 +189,21 @@ export default class GenerateGame {
       if (this.resultArrayTop.length <= 5) {
         root.classList.add('prompt-top');
         const newElem = document.createElement('div');
-        const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
+        const value = new String(this.resultArrayTop[i]).replaceAll(',', '—');
         newElem.classList.add('prompt-top__value');
         newElem.textContent = value;
         root.append(newElem);
       } else if (this.resultArrayTop.length > 5 && this.resultArrayTop.length <= 10) {
         root.classList.add('prompt-top', 'prompt-top2');
         const newElem = document.createElement('div');
-        const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
+        const value = new String(this.resultArrayTop[i]).replaceAll(',', '—');
         newElem.classList.add('prompt-top2__value2');
         newElem.textContent = value;
         root.append(newElem);
       } else if (this.resultArrayTop.length > 10) {
         root.classList.add('prompt-top', 'prompt-top3');
         const newElem = document.createElement('div');
-        const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
+        const value = new String(this.resultArrayTop[i]).replaceAll(',', '—');
         newElem.classList.add('prompt-top3__value3');
         newElem.textContent = value;
         root.append(newElem);

@@ -184,21 +184,21 @@ export default class GenerateGame {
 
     for (let i = 0; i < this.resultArrayTop.length; i += 1) {
       if (this.resultArrayTop.length <= 5) {
-        root.setAttribute('class', 'prompt-top');
+        root.classList.add('prompt-top')
         const newElem = document.createElement('div');
         const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
         newElem.classList.add('prompt-top__value');
         newElem.textContent = value;
         root.append(newElem);
       } else if (this.resultArrayTop.length > 5 && this.resultArrayTop.length <= 10) {
-        root.setAttribute('class', 'prompt-top2');
+        root.classList.add('prompt-top', 'prompt-top2');
         const newElem = document.createElement('div');
         const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
         newElem.classList.add('prompt-top2__value2');
         newElem.textContent = value;
         root.append(newElem);
       } else if (this.resultArrayTop.length > 10) {
-        root.setAttribute('class', 'prompt-top3');
+        root.classList.add('prompt-top', 'prompt-top3');
         const newElem = document.createElement('div');
         const value = new String(this.resultArrayTop[i]).replaceAll(',', ' ');
         newElem.classList.add('prompt-top3__value3');
@@ -215,7 +215,6 @@ function generateTimer(e) {
   if (!intervalRunning) {
     intervalRunning = true;
     const timer = document.getElementById('timer');
-    console.log(timer);
     if (!e.target.classList.contains('show-color')) {
       handlerInterval = setInterval(() => {
         if (seconds === 60) {
@@ -263,7 +262,6 @@ function handlerForRightMouseClick(e) {
   e.preventDefault();
   const currentElement = e.target;
   currentElement.classList.toggle('crossed');
-  console.log(currentElement);
 }
 
 const results = [];
@@ -279,7 +277,6 @@ function writeResultToTable(game, counter) {
 
     return timeA - timeB;
   });
-  console.log(results);
   showResultsInTable(results);
 }
 
@@ -321,9 +318,82 @@ export function resetGameFunction() {
 
 export function showGameSolution() {
   const elements = document.querySelectorAll('.base-elem');
+  elements.forEach(el => {
+    if(el.classList.contains('show-color')) {
+      el.classList.remove('show-color');
+    }
+  })
   elements.forEach((el) => {
     if (el.classList.contains('black')) {
       el.classList.add('show-color');
     }
   });
+}
+
+export function saveGameFunction() {
+  const button = document.querySelector('.save-game');
+  if (button.innerHTML === 'Save Game') {
+    button.innerHTML = 'Continue Game';
+    // записываю сохраненную игру в локалсторейдж
+    const elementsWrapper = document.querySelector('.elements-wrapper');
+    const promptTop = document.querySelector('.prompt-top');
+    const promptLeft = document.querySelector('.prompt-left');
+    const elementsString = elementsWrapper.outerHTML;
+    const promptTopString = promptTop.outerHTML;
+    const promptLeftString = promptLeft.outerHTML;
+    localStorage.setItem('savedElements', elementsString);
+    localStorage.setItem('savedPromptTop', promptTopString);
+    localStorage.setItem('savedPromptLeft', promptLeftString);
+  } else {
+    button.innerHTML = 'Save Game';
+    // f1() start получаю данные из локалсторейдж и восстанавливаю структуру DOM
+    const oldGame = getItemFromLocalStorage();
+    const topPrompt = getPromptTopFromLocalStorage();
+    const leftPrompt = getPromptLeftFromLocalStorage();
+    restoreOldGame(oldGame, topPrompt, leftPrompt);
+    // f1()end
+  }
+}
+
+function getPromptTopFromLocalStorage() {
+  const storedTopPrompt = localStorage.getItem('savedPromptTop');
+  let top = document.createElement('div');
+  top.classList.add('prompt-top');
+  top.innerHTML = storedTopPrompt;
+  top = top.firstChild;
+  return top;
+}
+
+function getPromptLeftFromLocalStorage() {
+  const storedLeftPrompt = localStorage.getItem('savedPromptLeft');
+  let left = document.createElement('div');
+  left.classList.add('prompt-left');
+  left.innerHTML = storedLeftPrompt;
+  left = left.firstChild;
+  return left;
+}
+
+function getItemFromLocalStorage() {
+  const storedElementsString = localStorage.getItem('savedElements');
+
+  let container = document.createElement('div');
+  container.classList.add('elements-wrapper');
+  container.innerHTML = storedElementsString;
+  container = container.firstChild;
+  Array.from(container.children).forEach((el) => {
+    el.addEventListener('click', handlerForCurrentClick);
+  });
+  return container;
+}
+
+function restoreOldGame(game, top, left) {
+  const fieldWrapper = document.querySelector('.field-wrapper');
+  const elementsWrapper = document.querySelector('.elements-wrapper');
+  const promptTop = document.querySelector('.prompt-top');
+  const promptLeft = document.querySelector('.prompt-left');
+  promptTop.remove();
+  promptLeft.remove();
+  elementsWrapper.remove();
+  fieldWrapper.insertAdjacentElement('beforebegin', top);
+  fieldWrapper.append(left, game);
 }

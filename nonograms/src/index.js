@@ -1,7 +1,7 @@
 import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
-import { resetGameFunction, showGameSolution } from './modules/generateGame';
+import { resetGameFunction, showGameSolution, saveGameFunction } from './modules/generateGame';
 
 export let nameGame;
 
@@ -139,12 +139,4 @@ function removeElements() {
   document.getElementById('root').remove();
 }
 
-function saveGameFunction() {
-  const button = document.querySelector('.save-game');
 
-  if (button.innerHTML === 'Save Game') {
-    button.innerHTML = 'Continue Game';
-  } else {
-    button.innerHTML = 'Save Game';
-  }
-}

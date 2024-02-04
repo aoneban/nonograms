@@ -353,28 +353,37 @@ export function saveGameFunction() {
   const button = document.querySelector('.save-game');
   if (button.innerHTML === 'Save Game') {
     button.innerHTML = 'Continue old Game';
-    // записываю сохраненную игру в локалсторейдж
     const elementsWrapper = document.querySelector('.elements-wrapper');
     const promptTop = document.querySelector('.prompt-top');
     const promptLeft = document.querySelector('.prompt-left');
     const elementsString = elementsWrapper.outerHTML;
     const promptTopString = promptTop.outerHTML;
     const promptLeftString = promptLeft.outerHTML;
+    const currNameGame = document.getElementById('curr-game').outerHTML;
     localStorage.setItem('savedElements', elementsString);
     localStorage.setItem('savedPromptTop', promptTopString);
     localStorage.setItem('savedPromptLeft', promptLeftString);
+    localStorage.setItem('savedCurrNameGame', currNameGame)
     localStorage.setItem('savedMinutes', minutes);
     localStorage.setItem('savedSeconds', seconds);
   } else {
     button.innerHTML = 'Save Game';
-    // f1() start получаю данные из локалсторейдж и восстанавливаю структуру DOM
     const oldGame = getItemFromLocalStorage();
     const topPrompt = getPromptTopFromLocalStorage();
     const leftPrompt = getPromptLeftFromLocalStorage();
-    restoreOldGame(oldGame, topPrompt, leftPrompt);
+    const getCurrGameName = getNameFromLocalStorage();
+    restoreOldGame(oldGame, topPrompt, leftPrompt, getCurrGameName);
     getOldTimeFromLocalStorage();
-    // f1()end
   }
+}
+
+function getNameFromLocalStorage() {
+  const getCurrGameName = localStorage.getItem('savedCurrNameGame');
+  const tempContainer = document.createElement('div');
+  tempContainer.innerHTML = getCurrGameName;
+  const restoredElement = tempContainer.firstChild;
+  console.log(restoredElement)
+  return restoredElement;
 }
 
 function getOldTimeFromLocalStorage() {
@@ -421,14 +430,17 @@ function getItemFromLocalStorage() {
   return container;
 }
 
-function restoreOldGame(game, top, left) {
+function restoreOldGame(game, top, left, names) {
+  document.getElementById('curr-game').remove();
   const fieldWrapper = document.querySelector('.field-wrapper');
   const elementsWrapper = document.querySelector('.elements-wrapper');
   const promptTop = document.querySelector('.prompt-top');
   const promptLeft = document.querySelector('.prompt-left');
+  const inputWrapper = document.querySelector('.input-wrapper');
   promptTop.remove();
   promptLeft.remove();
   elementsWrapper.remove();
   fieldWrapper.insertAdjacentElement('beforebegin', top);
+  inputWrapper.prepend(names);
   fieldWrapper.append(left, game);
 }

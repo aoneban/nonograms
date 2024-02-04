@@ -5,8 +5,8 @@ import { resetGameFunction, showGameSolution } from './modules/generateGame';
 
 export let nameGame;
 
-const firstGame = new GenerateGame(matrices['one (5x5)']);
-firstGame.createGame(matrices['one (5x5)']);
+const firstGame = new GenerateGame(matrices['Snake (5x5)']);
+firstGame.createGame(matrices['Snake (5x5)']);
 
 function createInput() {
   const wrapper = document.createElement('div');
@@ -38,14 +38,6 @@ function createInput() {
       <td>six (10x10)</td>
       <td>06:38</td>
     </tr>
-    <tr>
-      <td>eleven (15x15)</td>
-      <td>09:51</td>
-    </tr>
-    <tr>
-      <td>fifteen (15x15)</td>
-      <td>12:41</td>
-    </tr>
   </tbody>
 </table>
   `;
@@ -58,12 +50,17 @@ function createInput() {
   const solutionGameButton = document.createElement('button');
   solutionGameButton.classList.add('btn');
   solutionGameButton.textContent = 'Solution';
-  solutionGameButton.addEventListener('click', showGameSolution)
+  solutionGameButton.addEventListener('click', showGameSolution);
 
   const resetGameButton = document.createElement('button');
   resetGameButton.classList.add('btn');
   resetGameButton.textContent = 'Reset Game';
   resetGameButton.addEventListener('click', resetGameFunction);
+
+  const saveGameButton = document.createElement('button');
+  saveGameButton.classList.add('btn', 'save-game');
+  saveGameButton.textContent = 'Save Game';
+  saveGameButton.addEventListener('click', saveGameFunction);
 
   const changeThemeButton = document.createElement('button');
   changeThemeButton.classList.add('btn');
@@ -73,6 +70,7 @@ function createInput() {
     gameResults,
     changeThemeButton,
     randomGameButton,
+    saveGameButton,
     resetGameButton,
     solutionGameButton,
     input,
@@ -132,11 +130,21 @@ function choseRandomGame() {
   newGame.createGame(matrices[randomGame]);
 }
 
-export function nameGameForModal(value = 'one (5x5)') {
+export function nameGameForModal(value = 'Snake (5x5)') {
   return ` The nonogram was: ${value}`;
 }
 
 function removeElements() {
   document.querySelector('.name-game').remove();
   document.getElementById('root').remove();
+}
+
+function saveGameFunction() {
+  const button = document.querySelector('.save-game');
+
+  if (button.innerHTML === 'Save Game') {
+    button.innerHTML = 'Continue Game';
+  } else {
+    button.innerHTML = 'Save Game';
+  }
 }

@@ -8,16 +8,18 @@
 
 body {
   background-color: burlywood;
-  margin: 0;
-  height: 100vh;
+  margin: 100px auto;
+  height: auto;
   display: flex;
+  flex-wrap: wrap-reverse;
   justify-content: center;
   align-items: center;
+  gap: 30px;
 }
 
 h1 {
   position: absolute;
-  top: 20px;
+  top: 30px;
 }
 
 table {
@@ -45,6 +47,7 @@ thead th {
   position: relative;
   bottom: 2rem;
   border: 2px solid;
+  margin: 40px 0 0 0;
 }
 
 .field-wrapper {
@@ -106,7 +109,7 @@ thead th {
 }
 
 .elem3 {
-  width: 6.67%;
+  width: 6.66%;
   height: 18px;
   background-color: white;
   position: relative;
@@ -394,6 +397,7 @@ thead th {
   flex-direction: column;
   margin: 10px;
   gap: 10px;
+  width: 15rem;
 }
 
 #myInput {
@@ -405,3 +409,20 @@ thead th {
   background-color: aqua;
   text-align: center;
 }
+
+// @media (max-width: 700px) {
+//   .prompt-top3__value3 {
+//     width: 4.67%;
+//   }
+// }
+
+
+// @media (max-width: 540px) {
+//   #root {
+//     max-width: 99%;
+// }
+
+//   .prompt-top3__value3 {
+//     width: 4.47%;
+//   }
+// }

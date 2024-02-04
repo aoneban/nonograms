@@ -1,7 +1,7 @@
 import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
-import { resetGameFunction, showGameSolution, saveGameFunction } from './modules/generateGame';
+import { resetGameFunction, showGameSolution, saveGameFunction, choseNewGame, removeElements } from './modules/generateGame';
 
 export let nameGame;
 
@@ -109,16 +109,6 @@ function handlerForInput() {
 
 handlerForInput();
 
-function choseNewGame() {
-  const drop = document.getElementById('myDropdown');
-  drop.addEventListener('click', (event) => {
-    removeElements();
-    const game = event.target.innerText;
-    const newGame = new GenerateGame(matrices[game]);
-    newGame.createGame(matrices[game]);
-  });
-}
-
 choseNewGame();
 
 function choseRandomGame() {
@@ -134,9 +124,5 @@ export function nameGameForModal(value = 'Snake (5x5)') {
   return ` The nonogram was: ${value}`;
 }
 
-function removeElements() {
-  document.querySelector('.name-game').remove();
-  document.getElementById('root').remove();
-}
 
 

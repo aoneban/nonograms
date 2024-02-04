@@ -1,5 +1,6 @@
 import { nameGameForModal } from '../index';
 import { nameGame } from '../index';
+import { matrices } from './data';
 
 let intervalRunning = false;
 let handlerInterval;
@@ -77,9 +78,11 @@ export default class GenerateGame {
   }
 
   createGame(matrix) {
+    clearInterval(handlerInterval);
+    intervalRunning = false;
     seconds = 0;
     minutes = 0;
-    intervalRunning = false;
+    
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
 
@@ -314,6 +317,20 @@ export function resetGameFunction() {
   timer.textContent = '00:00';
   seconds = 0;
   minutes = 0;
+}
+export function choseNewGame() {
+  const drop = document.getElementById('myDropdown');
+  drop.addEventListener('click', (event) => {
+    removeElements();
+    const game = event.target.innerText;
+    const newGame = new GenerateGame(matrices[game]);
+    newGame.createGame(matrices[game]);
+  });
+}
+
+export function removeElements() {
+  document.querySelector('.name-game').remove();
+  document.getElementById('root').remove();
 }
 
 export function showGameSolution() {

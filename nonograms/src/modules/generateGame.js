@@ -244,8 +244,9 @@ function handlerClicks() {
     }
   });
   if (resultLength.length === 0) {
-    f1()
+    generateSoundForWin();
     let nameGameToAlert = nameGameForModal(nameGame);
+    console.log(nameGameToAlert);
     const sec = (seconds - 1).toString().padStart(2, '0');
     const min = minutes.toString().padStart(2, '0');
     alert(`You WON! ${nameGameToAlert}. Your time is: ${min}:${sec}`);
@@ -275,6 +276,7 @@ function handlerForRightMouseClick(e) {
 const results = [];
 
 function writeResultToTable(game, counter) {
+  console.log(game)
   const nameGame = game.replace(' The nonogram was:', '').trim();
   const gameResult = localStorage.getItem(game);
   results.push({ id: counter, game: nameGame, result: gameResult });
@@ -450,7 +452,7 @@ function restoreOldGame(game, top, left, names) {
   fieldWrapper.append(left, game);
 }
 
-function f1() {
+function generateSoundForWin() {
   const audioPlayer = document.getElementById('myAudio');
   const onEnded = () => {
     playAudio(winInGame);

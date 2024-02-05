@@ -128,6 +128,7 @@ function choseRandomGame() {
   const newGame = new GenerateGame(matrices[randomGame]);
   newGame.createGame(matrices[randomGame]);
   document.getElementById('curr-game').innerHTML = randomGame;
+  nameGame = randomGame;
 }
 
 export function nameGameForModal(value = 'Snake (5x5)') {

@@ -1,6 +1,3 @@
-@import './styles/vars.scss';
-@import './styles/modal.scss';
-
 * {
   margin: 0;
   padding: 0;
@@ -122,40 +119,40 @@ thead th {
 
 .prompt-left {
   text-align: center;
-  &__value {
-    width: 4.6rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    background-color: lightgrey;
-    border-top: 1px solid;
-  }
-  &__value2 {
-    width: 4.6rem;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    font-size: 0.7rem;
-    background-color: lightgrey;
-    border-top: 1px solid;
-    padding: 0 8px 0 0;
-  }
-  &__value3 {
-    width: 7.85rem;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    font-size: 0.7rem;
-    background-color: lightgrey;
-    border-top: 1px solid;
-    position: relative;
-    z-index: 1;
-    padding: 0 7px 0 0;
-  }
+}
+.prompt-left__value {
+  width: 4.6rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  background-color: lightgrey;
+  border-top: 1px solid;
+}
+.prompt-left__value2 {
+  width: 4.6rem;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 0.7rem;
+  background-color: lightgrey;
+  border-top: 1px solid;
+  padding: 0 8px 0 0;
+}
+.prompt-left__value3 {
+  width: 7.85rem;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 0.7rem;
+  background-color: lightgrey;
+  border-top: 1px solid;
+  position: relative;
+  z-index: 1;
+  padding: 0 7px 0 0;
 }
 
 .prompt-top {
@@ -167,18 +164,18 @@ thead th {
   align-items: center;
   background: lightgrey;
   text-align: center;
-  &__value {
-    display: flex;
-    word-wrap: break-word;
-    width: 18px;
-    border-left: 1px solid;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 7.92%;
-    font-size: 0.7rem;
-  }
+}
+.prompt-top__value {
+  display: flex;
+  word-wrap: break-word;
+  width: 18px;
+  border-left: 1px solid;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 7.92%;
+  font-size: 0.7rem;
 }
 
 .prompt-top2 {
@@ -189,18 +186,18 @@ thead th {
   align-items: center;
   background: lightgrey;
   justify-content: end;
-  &__value2 {
-    display: flex;
-    word-wrap: break-word;
-    width: 30px;
-    border-left: 1px solid;
-    height: 100%;
-    align-items: center;
-    justify-content: end;
-    flex-direction: column;
-    padding: 0 13px 8px 13px;
-    font-size: 0.7rem;
-  }
+}
+.prompt-top2__value2 {
+  display: flex;
+  word-wrap: break-word;
+  width: 30px;
+  border-left: 1px solid;
+  height: 100%;
+  align-items: center;
+  justify-content: end;
+  flex-direction: column;
+  padding: 0 13px 8px 13px;
+  font-size: 0.7rem;
 }
 
 .prompt-top3 {
@@ -211,18 +208,18 @@ thead th {
   align-items: center;
   background: lightgrey;
   justify-content: end;
-  &__value3 {
-    display: flex;
-    word-wrap: break-word;
-    width: 4.7%;
-    border-left: 1px solid;
-    height: 100%;
-    align-items: center;
-    justify-content: end;
-    flex-direction: column;
-    padding: 5px 1px 7px 2px;
-    font-size: 0.7rem;
-  }
+}
+.prompt-top3__value3 {
+  display: flex;
+  word-wrap: break-word;
+  width: 4.7%;
+  border-left: 1px solid;
+  height: 100%;
+  align-items: center;
+  justify-content: end;
+  flex-direction: column;
+  padding: 5px 1px 7px 2px;
+  font-size: 0.7rem;
 }
 
 .crossed {
@@ -231,7 +228,7 @@ thead th {
 
 .crossed::before,
 .crossed::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 2px;
   left: 44%;
@@ -409,21 +406,4 @@ thead th {
   border-bottom: 2px solid;
   background-color: aqua;
   text-align: center;
-}
-
-// @media (max-width: 700px) {
-//   .prompt-top3__value3 {
-//     width: 4.67%;
-//   }
-// }
-
-
-// @media (max-width: 540px) {
-//   #root {
-//     max-width: 99%;
-// }
-
-//   .prompt-top3__value3 {
-//     width: 4.47%;
-//   }
-// }
+}/*# sourceMappingURL=index.css.map */

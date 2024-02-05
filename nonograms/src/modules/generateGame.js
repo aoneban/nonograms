@@ -1,6 +1,8 @@
 import { nameGameForModal } from '../index';
 import { nameGame } from '../index';
 import { matrices } from './data';
+import { winInGame, leftClick, rightClick, failInGame } from '../assets/audio/sounds';
+import { playAudio } from './helpers';
 
 let intervalRunning = false;
 let handlerInterval;
@@ -242,6 +244,7 @@ function handlerClicks() {
     }
   });
   if (resultLength.length === 0) {
+    f1()
     let nameGameToAlert = nameGameForModal(nameGame);
     const sec = (seconds - 1).toString().padStart(2, '0');
     const min = minutes.toString().padStart(2, '0');
@@ -256,6 +259,7 @@ function handlerClicks() {
 }
 
 function handlerForCurrentClick(e) {
+  playAudio(leftClick);
   const currentElement = e.target;
   currentElement.classList.toggle('show-color');
   handlerClicks();
@@ -263,6 +267,7 @@ function handlerForCurrentClick(e) {
 
 function handlerForRightMouseClick(e) {
   e.preventDefault();
+  playAudio(rightClick);
   const currentElement = e.target;
   currentElement.classList.toggle('crossed');
 }
@@ -363,7 +368,7 @@ export function saveGameFunction() {
     localStorage.setItem('savedElements', elementsString);
     localStorage.setItem('savedPromptTop', promptTopString);
     localStorage.setItem('savedPromptLeft', promptLeftString);
-    localStorage.setItem('savedCurrNameGame', currNameGame)
+    localStorage.setItem('savedCurrNameGame', currNameGame);
     localStorage.setItem('savedMinutes', minutes);
     localStorage.setItem('savedSeconds', seconds);
   } else {
@@ -382,7 +387,7 @@ function getNameFromLocalStorage() {
   const tempContainer = document.createElement('div');
   tempContainer.innerHTML = getCurrGameName;
   const restoredElement = tempContainer.firstChild;
-  console.log(restoredElement)
+  console.log(restoredElement);
   return restoredElement;
 }
 
@@ -443,4 +448,13 @@ function restoreOldGame(game, top, left, names) {
   fieldWrapper.insertAdjacentElement('beforebegin', top);
   inputWrapper.prepend(names);
   fieldWrapper.append(left, game);
+}
+
+function f1() {
+  const audioPlayer = document.getElementById('myAudio');
+  const onEnded = () => {
+    playAudio(winInGame);
+    audioPlayer.removeEventListener('ended', onEnded);
+  };
+  audioPlayer.addEventListener('ended', onEnded);
 }

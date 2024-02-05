@@ -1,9 +1,12 @@
 import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
+import { createAudioPlayer } from './modules/helpers';
 import { resetGameFunction, showGameSolution, saveGameFunction, choseNewGame, removeElements } from './modules/generateGame';
 
 export let nameGame;
+
+createAudioPlayer();
 
 const firstGame = new GenerateGame(matrices['Snake (5x5)']);
 firstGame.createGame(matrices['Snake (5x5)']);

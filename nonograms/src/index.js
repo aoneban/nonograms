@@ -2,7 +2,13 @@ import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
 import { createAudioPlayer } from './modules/helpers';
-import { resetGameFunction, showGameSolution, saveGameFunction, choseNewGame, removeElements } from './modules/generateGame';
+import {
+  resetGameFunction,
+  showGameSolution,
+  saveGameFunction,
+  choseNewGame,
+  removeElements,
+} from './modules/generateGame';
 
 export let nameGame;
 
@@ -70,8 +76,9 @@ function createInput() {
   saveGameButton.addEventListener('click', saveGameFunction);
 
   const changeThemeButton = document.createElement('button');
-  changeThemeButton.classList.add('btn');
-  changeThemeButton.textContent = 'Change Theme';
+  changeThemeButton.classList.add('btn', 'change-theme');
+  changeThemeButton.textContent = 'Dark Theme';
+  changeThemeButton.addEventListener('click', changeColorTheme);
 
   wrapper.append(
     nameCurrentGame,
@@ -135,5 +142,28 @@ export function nameGameForModal(value = 'Snake (5x5)') {
   return ` The nonogram was: ${value}`;
 }
 
-
-
+function changeColorTheme() {
+  const button = document.querySelector('.change-theme');
+  if (button.innerHTML === 'Dark Theme') {
+    button.innerHTML = 'Light Theme';
+    document.body.classList.add('change-color');
+    document.getElementById('root').classList.add('change-color');
+    const btn = document.querySelectorAll('.btn')
+    btn.forEach(el => el.classList.add('new-btn'))
+    const thElements = document.getElementsByTagName('th');
+    for (let i = 0; i < thElements.length; i++) {
+      thElements[i].classList.add('change-color');
+    }
+  } else {
+    button.innerHTML = 'Dark Theme';
+    document.body.classList.remove('change-color');
+    document.getElementById('root').classList.remove('change-color');
+    document.querySelector('.btn').classList.remove('new-btn');
+    const btn = document.querySelectorAll('.btn')
+    btn.forEach(el => el.classList.remove('new-btn'))
+    const thElements = document.getElementsByTagName('th');
+    for (let i = 0; i < thElements.length; i++) {
+      thElements[i].classList.remove('change-color');
+    }
+  }
+}

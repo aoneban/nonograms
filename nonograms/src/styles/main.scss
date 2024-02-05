@@ -3,14 +3,16 @@ body {
   margin: 100px auto;
   height: auto;
   display: flex;
+  background-color: $bgbody;
+  color: $bgcolor;
   flex-wrap: wrap-reverse;
   justify-content: center;
   align-items: center;
 }
 
-body,
 .change-color {
-  background-color: $body;
+  background-color: rgb(63, 59, 59) !important;
+  color: white;
 }
 
 h1 {
@@ -25,17 +27,17 @@ table {
 
 thead,
 tbody {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   padding: 8px;
   text-align: left;
 }
 
-thead th {
+th {
   background-color: #f2f2f2;
 }
 
@@ -45,6 +47,7 @@ thead th {
 
 #root {
   position: relative;
+  background: $prompt;
   bottom: 2rem;
   border: 2px solid;
   margin: 40px 0 0 0;
@@ -62,6 +65,11 @@ thead th {
     background-color: $btnhover;
     color: #f2f2f2;
   }
+}
+
+.new-btn {
+  background-color: antiquewhite !important;
+  color: rgb(42, 30, 30) !important;
 }
 
 .field-wrapper {
@@ -136,7 +144,6 @@ thead th {
 
 .prompt-left {
   text-align: center;
-  background-color: $prompt;
   &__value {
     width: 4.6rem;
     height: 60px;
@@ -177,7 +184,6 @@ thead th {
   height: 80px;
   justify-content: end;
   align-items: center;
-  background: $prompt;
   text-align: center;
   &__value {
     display: flex;
@@ -199,7 +205,6 @@ thead th {
   width: 100%;
   height: 110px;
   align-items: center;
-  background: $prompt;
   justify-content: end;
   &__value2 {
     display: flex;
@@ -221,7 +226,6 @@ thead th {
   width: auto;
   height: 120px;
   align-items: center;
-  background: $prompt;
   justify-content: end;
   &__value3 {
     display: flex;
@@ -422,11 +426,10 @@ thead th {
 
 .count-time {
   border-bottom: 2px solid;
-  background-color: $prompt;
   text-align: center;
 }
 
 .class-block a:hover {
-    cursor: pointer;
-    background-color: $prompt;
+  cursor: pointer;
+  background-color: $prompt;
 }

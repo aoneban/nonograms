@@ -47,7 +47,7 @@ function createInput() {
 
   const nameCurrentGame = document.createElement('h3');
   nameCurrentGame.setAttribute('id', 'curr-game');
-  nameCurrentGame.textContent = 'Snake (5x5)';
+  nameCurrentGame.textContent = 'Current game: Snake (5x5)';
 
   const randomGameButton = document.createElement('button');
   randomGameButton.classList.add('btn');
@@ -110,7 +110,7 @@ function handlerForInput() {
       nameGame = document.getElementById('myInput').value;
       nameGame = event.target.textContent;
       document.getElementById('myInput').placeholder = nameGame;
-      document.getElementById('curr-game').innerHTML = nameGame;
+      document.getElementById('curr-game').innerHTML = `Current game: ${nameGame}`;
       document.getElementById('myDropdown').classList.remove('class-block');
     }
   });
@@ -127,7 +127,7 @@ function choseRandomGame() {
   removeElements();
   const newGame = new GenerateGame(matrices[randomGame]);
   newGame.createGame(matrices[randomGame]);
-  document.getElementById('curr-game').innerHTML = randomGame;
+  document.getElementById('curr-game').innerHTML = `Current game: ${randomGame}`;
   nameGame = randomGame;
 }
 

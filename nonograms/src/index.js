@@ -88,9 +88,15 @@ function createInput() {
   resetGameButton.textContent = 'Reset Game';
   resetGameButton.addEventListener('click', resetGameFunction);
 
+  const valueButtonToSaveGame = localStorage.getItem('savedCurrentButtonValue');
+
   const saveGameButton = document.createElement('button');
   saveGameButton.classList.add('btn', 'save-game');
-  saveGameButton.textContent = 'Save Game';
+  if (valueButtonToSaveGame === 'Save Game') {
+    saveGameButton.textContent = 'Continue old Game';
+  } else {
+    saveGameButton.textContent = 'Save Game';
+  }
   saveGameButton.addEventListener('click', saveGameFunction);
 
   const changeThemeButton = document.createElement('button');

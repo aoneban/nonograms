@@ -375,6 +375,7 @@ export function saveGameFunction() {
     const promptTopString = promptTop.outerHTML;
     const promptLeftString = promptLeft.outerHTML;
     const currNameGame = document.getElementById('curr-game').outerHTML;
+    localStorage.setItem('savedCurrentButtonValue', 'Save Game');
     localStorage.setItem('savedElements', elementsString);
     localStorage.setItem('savedPromptTop', promptTopString);
     localStorage.setItem('savedPromptLeft', promptLeftString);
@@ -383,6 +384,7 @@ export function saveGameFunction() {
     localStorage.setItem('savedSeconds', seconds);
   } else {
     button.innerHTML = 'Save Game';
+    localStorage.setItem('savedCurrentButtonValue', 'Continue old Game');
     const oldGame = getItemFromLocalStorage();
     const topPrompt = getPromptTopFromLocalStorage();
     const leftPrompt = getPromptLeftFromLocalStorage();

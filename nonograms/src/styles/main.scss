@@ -144,6 +144,7 @@ th {
 
 .prompt-left {
   text-align: center;
+  border-right: 2px solid grey;
   &__value {
     width: 4.6rem;
     height: 60px;
@@ -190,6 +191,7 @@ th {
     word-wrap: break-word;
     width: 18px;
     border-left: 1px solid;
+    border-bottom: 2px solid grey;
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -211,6 +213,7 @@ th {
     word-wrap: break-word;
     width: 30px;
     border-left: 1px solid;
+    border-bottom: 2px solid grey;
     height: 100%;
     align-items: center;
     justify-content: end;
@@ -232,6 +235,7 @@ th {
     word-wrap: break-word;
     width: 4.7%;
     border-left: 1px solid;
+    border-bottom: 2px solid grey;
     height: 100%;
     align-items: center;
     justify-content: end;

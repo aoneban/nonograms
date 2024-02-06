@@ -218,6 +218,7 @@ export default class GenerateGame {
 
 function generateTimer(e) {
   if (!intervalRunning) {
+    seconds = 1;
     intervalRunning = true;
     const timer = document.getElementById('timer');
     if (!e.target.classList.contains('show-color')) {
@@ -314,6 +315,7 @@ function showResultsInTable(arr) {
 }
 
 export function resetGameFunction() {
+  intervalRunning = false;
   const elements = document.querySelectorAll('.base-elem');
   elements.forEach((el) => {
     if (el.classList.contains('show-color')) {
@@ -332,7 +334,6 @@ export function resetGameFunction() {
   const sec = seconds.toString().padStart(2, '0');
   const min = minutes.toString().padStart(2, '0');
   timer.innerHTML = `${min}:${sec}`;
-  intervalRunning = false;
 }
 
 export function choseNewGame() {
@@ -383,7 +384,19 @@ export function saveGameFunction() {
     localStorage.setItem('savedMinutes', minutes);
     localStorage.setItem('savedSeconds', seconds);
   } else {
+    clearInterval(handlerInterval);
     button.innerHTML = 'Save Game';
+    intervalRunning = false;
+    handlerInterval = setInterval(() => {
+      if (seconds === 60) {
+        minutes += 1;
+        seconds = 0;
+      }
+      const sec = seconds.toString().padStart(2, '0');
+      const min = minutes.toString().padStart(2, '0');
+      timer.innerHTML = `${min}:${sec}`;
+      seconds += 1;
+    }, 1000);
     localStorage.setItem('savedCurrentButtonValue', 'Continue old Game');
     const oldGame = getItemFromLocalStorage();
     const topPrompt = getPromptTopFromLocalStorage();

@@ -20,7 +20,35 @@ export function playAudio(audioSource) {
 }
 
 export function showModalWindow(nameGame, minutes, seconds) {
-  setTimeout(() => {
-    alert(`You WON! ${nameGame}. Your time is: ${minutes}:${seconds}`);
-  }, 500);
+
+    const modal = document.createElement('div');
+    modal.setAttribute('id', 'myModal');
+    modal.classList.add('modal');
+
+    const content = document.createElement('div');
+    content.classList.add('modal-content');
+
+    const congrats = document.createElement('p');
+    congrats.classList.add('congrats');
+    congrats.textContent = 'You WON!';
+
+    const nameLastGame = document.createElement('p');
+    nameLastGame.classList.add('last-game');
+    nameLastGame.textContent = nameGame;
+
+    const gameTime = document.createElement('p');
+    gameTime.classList.add('game-time');
+    gameTime.textContent = `Your time: ${minutes}:${seconds}`;
+
+    const button = document.createElement('button');
+    button.classList.add('btn', 'btn-modal');
+    button.textContent = 'Close';
+    button.addEventListener('click', () => {
+      modal.remove();
+    } )
+
+    content.append(congrats, nameLastGame, gameTime, button);
+    modal.append(content);
+    document.body.append(modal);
+  
 }

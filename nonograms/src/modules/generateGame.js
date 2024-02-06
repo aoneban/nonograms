@@ -88,6 +88,10 @@ export default class GenerateGame {
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
 
+    if (document.body.classList.contains('change-color')) {
+      root.classList.add('change-color')
+    }
+
     const nameGame = document.createElement('h1');
     nameGame.classList.add('name-game');
     nameGame.textContent = 'Nonograms';
@@ -238,13 +242,21 @@ function generateTimer(e) {
 
 function handlerClicks() {
   const resultLength = new Array();
+  const grayArray = new Array();
   const blacksFields = document.querySelectorAll('.black');
+  const grayFields = document.querySelectorAll('.gray');
+  grayFields.forEach((item) => {
+    if (item.classList.contains('show-color')) {
+      grayArray.push(item);
+    }
+  })
   blacksFields.forEach((item) => {
     if (!item.classList.contains('show-color')) {
       resultLength.push(item);
     }
   });
-  if (resultLength.length === 0) {
+  console.log(grayArray)
+  if (resultLength.length === 0 && grayArray.length === 0) {
     generateSoundForWin();
     let nameGameToAlert = nameGameForModal(nameGame);
     const sec = (seconds - 1).toString().padStart(2, '0');

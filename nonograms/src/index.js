@@ -29,7 +29,6 @@ function createInput() {
   input.setAttribute('id', 'myInput');
 
   const getResultGameFromLS = localStorage.getItem('savedResultsGameToTable');
-  console.log(getResultGameFromLS)
 
   const gameResults = document.createElement('div');
   gameResults.classList.add('game-results');
@@ -172,6 +171,7 @@ function changeColorTheme() {
     button.innerHTML = 'Light Theme';
     document.body.classList.add('change-color');
     document.getElementById('root').classList.add('change-color');
+    document.getElementById('myDropdown').classList.add('change-color');
     const btn = document.querySelectorAll('.btn')
     btn.forEach(el => el.classList.add('new-btn'))
     const thElements = document.getElementsByTagName('th');
@@ -183,6 +183,7 @@ function changeColorTheme() {
     document.body.classList.remove('change-color');
     document.getElementById('root').classList.remove('change-color');
     document.querySelector('.btn').classList.remove('new-btn');
+    document.getElementById('myDropdown').classList.remove('change-color');
     const btn = document.querySelectorAll('.btn')
     btn.forEach(el => el.classList.remove('new-btn'))
     const thElements = document.getElementsByTagName('th');

@@ -28,28 +28,46 @@ function createInput() {
   input.setAttribute('placeholder', 'Chose game of the list');
   input.setAttribute('id', 'myInput');
 
+  const getResultGameFromLS = localStorage.getItem('savedResultsGameToTable');
+  console.log(getResultGameFromLS)
+
   const gameResults = document.createElement('div');
   gameResults.classList.add('game-results');
-  gameResults.innerHTML = `
-  <table>
-  <thead>
-    <tr>
-      <th>Name game</th>
-      <th>Time</th>
-    </tr>
-  </thead>
-  <tbody id="resultsTableBody">
-    <tr>
-      <td>four (5x5)</td>
-      <td>04:20</td>
-    </tr>
-    <tr>
-      <td>six (10x10)</td>
-      <td>06:38</td>
-    </tr>
-  </tbody>
-</table>
-  `;
+
+  if (getResultGameFromLS === null) {
+    gameResults.innerHTML = `
+    <table>
+    <thead>
+      <tr>
+        <th>Name game</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody id="resultsTableBody">
+      <tr>
+        <td>Running Man (10x10)</td>
+        <td>04:20</td>
+      </tr>
+      <tr>
+        <td>Airplane (15x15)</td>
+        <td>06:38</td>
+      </tr>
+    </tbody>
+  </table>
+    `;
+  } else {
+    gameResults.innerHTML = `
+    <table>
+    <thead>
+      <tr>
+        <th>Name game</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    ${getResultGameFromLS}
+  </table>
+    `;
+  }
 
   const nameCurrentGame = document.createElement('h3');
   nameCurrentGame.setAttribute('id', 'curr-game');

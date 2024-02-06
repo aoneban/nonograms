@@ -18,3 +18,9 @@ export function playAudio(audioSource) {
   audioPlayer.src = audioSource;
   audioPlayer.play();
 }
+
+export function showModalWindow(nameGame, minutes, seconds) {
+  setTimeout(() => {
+    alert(`You WON! ${nameGame}. Your time is: ${minutes}:${seconds}`);
+  }, 500);
+}

@@ -1,8 +1,8 @@
 import { nameGameForModal } from '../index';
 import { nameGame } from '../index';
 import { matrices } from './data';
-import { winInGame, leftClick, rightClick, failInGame } from '../assets/audio/sounds';
-import { playAudio } from './helpers';
+import { winInGame, leftClick, rightClick } from '../assets/audio/sounds';
+import { playAudio, showModalWindow } from './helpers';
 
 let intervalRunning = false;
 let handlerInterval;
@@ -248,7 +248,7 @@ function handlerClicks() {
     let nameGameToAlert = nameGameForModal(nameGame);
     const sec = (seconds - 1).toString().padStart(2, '0');
     const min = minutes.toString().padStart(2, '0');
-    alert(`You WON! ${nameGameToAlert}. Your time is: ${min}:${sec}`);
+    showModalWindow(nameGameToAlert, min, sec);
     localStorage.setItem(nameGameToAlert, `${min}:${sec}`);
     writeResultToTable(nameGameToAlert, counterResults);
     document.removeEventListener('click', generateTimer);
@@ -269,6 +269,9 @@ function handlerForRightMouseClick(e) {
   e.preventDefault();
   playAudio(rightClick);
   const currentElement = e.target;
+  if (currentElement.classList.contains('show-color')) {
+    currentElement.classList.remove('show-color')
+  }
   currentElement.classList.toggle('crossed');
 }
 
@@ -306,6 +309,7 @@ function showResultsInTable(arr) {
 
     row.append(tdOne, tdTwo);
     tableBody.appendChild(row);
+    localStorage.setItem('savedResultsGameToTable', tableBody.outerHTML);
   });
 }
 
@@ -314,6 +318,11 @@ export function resetGameFunction() {
   elements.forEach((el) => {
     if (el.classList.contains('show-color')) {
       el.classList.remove('show-color');
+    }
+  });
+  elements.forEach((el) => {
+    if (el.classList.contains('crossed')) {
+      el.classList.remove('crossed');
     }
   });
   clearInterval(handlerInterval);
@@ -325,6 +334,7 @@ export function resetGameFunction() {
   timer.innerHTML = `${min}:${sec}`;
   intervalRunning = false;
 }
+
 export function choseNewGame() {
   const drop = document.getElementById('myDropdown');
   drop.addEventListener('click', (event) => {

@@ -89,7 +89,7 @@ export default class GenerateGame {
     root.setAttribute('id', 'root');
 
     if (document.body.classList.contains('change-color')) {
-      root.classList.add('change-color')
+      root.classList.add('change-color');
     }
 
     const nameGame = document.createElement('h1');
@@ -249,13 +249,13 @@ function handlerClicks() {
     if (item.classList.contains('show-color')) {
       grayArray.push(item);
     }
-  })
+  });
   blacksFields.forEach((item) => {
     if (!item.classList.contains('show-color')) {
       resultLength.push(item);
     }
   });
-  console.log(grayArray)
+  console.log(grayArray);
   if (resultLength.length === 0 && grayArray.length === 0) {
     generateSoundForWin();
     let nameGameToAlert = nameGameForModal(nameGame);
@@ -274,16 +274,20 @@ function handlerClicks() {
 function handlerForCurrentClick(e) {
   playAudio(leftClick);
   const currentElement = e.target;
+  if (currentElement.classList.contains('crossed')) {
+    currentElement.classList.remove('crossed');
+  }
   currentElement.classList.toggle('show-color');
   handlerClicks();
 }
 
 function handlerForRightMouseClick(e) {
   e.preventDefault();
+  generateTimer(e);
   playAudio(rightClick);
   const currentElement = e.target;
   if (currentElement.classList.contains('show-color')) {
-    currentElement.classList.remove('show-color')
+    currentElement.classList.remove('show-color');
   }
   currentElement.classList.toggle('crossed');
 }

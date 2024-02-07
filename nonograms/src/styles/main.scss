@@ -419,6 +419,16 @@ th {
   margin: 10px;
   gap: 10px;
   width: 21rem;
+  padding: 15px;
+}
+
+.input-wrapper,
+.bac-input {
+  background-color: rgb(231, 164, 106);
+}
+
+.input-dark {
+  background-color: #645656!important;
 }
 
 #myInput {

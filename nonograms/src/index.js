@@ -8,6 +8,7 @@ import {
   saveGameFunction,
   choseNewGame,
   removeElements,
+  switchSoundInTheGame
 } from './modules/generateGame';
 
 export let nameGame;
@@ -77,6 +78,11 @@ function createInput() {
   randomGameButton.textContent = 'Random game';
   randomGameButton.addEventListener('click', choseRandomGame);
 
+  const switchSoundButton = document.createElement('button');
+  switchSoundButton.classList.add('btn', 'switch-sound');
+  switchSoundButton.textContent = 'Sound Off';
+  switchSoundButton.addEventListener('click', switchSoundInTheGame);
+
   const solutionGameButton = document.createElement('button');
   solutionGameButton.classList.add('btn');
   solutionGameButton.textContent = 'Solution';
@@ -107,6 +113,7 @@ function createInput() {
     nameCurrentGame,
     gameResults,
     changeThemeButton,
+    switchSoundButton,
     randomGameButton,
     saveGameButton,
     resetGameButton,

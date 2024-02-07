@@ -9,6 +9,7 @@ let handlerInterval;
 let seconds = 0;
 let minutes = 0;
 let counterResults = 1;
+let handlerSound = true;
 
 export default class GenerateGame {
   constructor(matrix) {
@@ -272,7 +273,9 @@ function handlerClicks() {
 }
 
 function handlerForCurrentClick(e) {
-  playAudio(leftClick);
+  if (handlerSound) {
+    playAudio(leftClick);
+  }
   const currentElement = e.target;
   if (currentElement.classList.contains('crossed')) {
     currentElement.classList.remove('crossed');
@@ -284,7 +287,9 @@ function handlerForCurrentClick(e) {
 function handlerForRightMouseClick(e) {
   e.preventDefault();
   generateTimer(e);
-  playAudio(rightClick);
+  if (handlerSound) {
+    playAudio(rightClick);
+  }
   const currentElement = e.target;
   if (currentElement.classList.contains('show-color')) {
     currentElement.classList.remove('show-color');
@@ -497,4 +502,15 @@ function generateSoundForWin() {
     audioPlayer.removeEventListener('ended', onEnded);
   };
   audioPlayer.addEventListener('ended', onEnded);
+}
+
+export function switchSoundInTheGame() {
+  const buttonGame = document.querySelector('.switch-sound');
+  if (buttonGame.innerHTML === 'Sound Off') {
+    handlerSound = false;
+    buttonGame.innerHTML = 'Sound On';
+  } else {
+    buttonGame.innerHTML = 'Sound Off';
+    handlerSound = true;
+  }
 }

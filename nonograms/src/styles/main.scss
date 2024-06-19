@@ -83,6 +83,7 @@ th {
   border: none;
   border-radius: 5px;
   background-color: $bgbuttons;
+  font-family: "Russo One", sans-serif;
   color: #f2f2f2;
   cursor: pointer;
   &:hover {
@@ -443,7 +444,7 @@ th {
   gap: 10px;
   width: 25%;
   height: 100%;
-  padding: 35px 15px 15px 15px;
+  padding: 35px 25px 15px 25px;
   z-index: 1;
 }
 
@@ -461,6 +462,7 @@ th {
   border-radius: 5px;
   outline: none;
   border: 1px solid $bgbuttons;
+  font-family: "Russo One", sans-serif;
 }
 
 .count-time {
@@ -471,4 +473,64 @@ th {
 .class-block a:hover {
   cursor: pointer;
   background-color: $prompt;
+}
+
+
+@media (max-width: 1300px) {
+ 
+  .input-wrapper {
+    width: 35%;
+  }
+
+  #m-root {
+    width: 65%;
+  }
+}
+
+@media (max-width: 1000px) {
+ 
+  .input-wrapper {
+    width: 45%;
+  }
+
+  #m-root {
+    width: 55%;
+  }
+}
+
+@media (max-width: 730px) {
+
+  body {
+    height: auto;
+    flex-direction: column;
+  }
+ 
+  .input-wrapper {
+    width: 65%;
+  }
+
+  .developer {
+    bottom: 3px;
+  }
+}
+
+@media (max-width: 580px) {
+ 
+  .input-wrapper {
+    width: 75%;
+  }
+}
+
+@media (max-width: 500px) {
+ 
+  .input-wrapper {
+    width: 85%;
+  }
+}
+
+@media (max-width: 450px) {
+ 
+  .input-wrapper {
+    width: 95%;
+  }
 }

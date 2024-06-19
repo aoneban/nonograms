@@ -22,12 +22,23 @@ function createInput() {
   const wrapper = document.createElement('div');
   wrapper.classList.add('input-wrapper');
 
-  const matrixValues = Object.keys(matrices);
+  const gameTitle = document.createElement('h4');
+  gameTitle.textContent = 'Choose the game:'
 
-  const input = document.createElement('input');
-  input.setAttribute('type', 'text');
-  input.setAttribute('placeholder', 'Chose game of the list');
+  const input = document.createElement('select');
   input.setAttribute('id', 'myInput');
+  const games = Object.keys(matrices)
+  games.forEach((elem) => {
+    const selectValue = document.createElement('option')
+    selectValue.setAttribute('name', elem);
+    selectValue.textContent = elem;
+    input.append(selectValue);
+  })
+
+  const buttonGame = document.createElement('button');
+  buttonGame.classList.add('btn');
+  buttonGame.textContent = 'Submit'
+  buttonGame.addEventListener('click', selectNewGame)
 
   const getResultGameFromLS = localStorage.getItem('savedResultsGameToTable');
 
@@ -85,7 +96,7 @@ function createInput() {
 
   const solutionGameButton = document.createElement('button');
   solutionGameButton.classList.add('btn');
-  solutionGameButton.textContent = 'Solution';
+  solutionGameButton.textContent = 'Show solution';
   solutionGameButton.addEventListener('click', showGameSolution);
 
   const resetGameButton = document.createElement('button');
@@ -118,18 +129,13 @@ function createInput() {
     saveGameButton,
     resetGameButton,
     solutionGameButton,
+    gameTitle,
     input,
+    buttonGame,
   );
 
   const matrixWrap = document.createElement('div');
   matrixWrap.setAttribute('id', 'myDropdown');
-
-  matrixValues.map((element) => {
-    const link = document.createElement('a');
-    link.style.display = 'block';
-    link.textContent = element;
-    matrixWrap.append(link);
-  });
 
   wrapper.append(matrixWrap);
   document.body.prepend(wrapper);
@@ -138,17 +144,10 @@ function createInput() {
 createInput();
 
 function handlerForInput() {
-  document.getElementById('myInput').addEventListener('click', function () {
-    document.getElementById('myDropdown').classList.add('class-block');
-  });
-
-  document.getElementById('myDropdown').addEventListener('click', function (event) {
-    if (event.target.tagName === 'A') {
-      nameGame = document.getElementById('myInput').value;
-      nameGame = event.target.textContent;
-      document.getElementById('myInput').placeholder = nameGame;
-      document.getElementById('curr-game').innerHTML = `Current game: ${nameGame}`;
-      document.getElementById('myDropdown').classList.remove('class-block');
+  const selectValue = document.getElementById('myInput');
+  selectValue.addEventListener('click', function () {
+    if (selectValue.value) {
+      nameGame = selectValue.value;
     }
   });
 }
@@ -156,6 +155,16 @@ function handlerForInput() {
 handlerForInput();
 
 choseNewGame();
+
+function selectNewGame() {
+  const chooseValue = document.getElementById('myInput');
+  const chooseGame = chooseValue.value;
+  removeElements();
+  const newGame = new GenerateGame(matrices[chooseGame]);
+  newGame.createGame(matrices[chooseGame]);
+  document.getElementById('curr-game').innerHTML = `Current game: ${chooseGame}`;
+  nameGame = chooseGame;
+}
 
 function choseRandomGame() {
   const matrixValues = Object.keys(matrices);

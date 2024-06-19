@@ -89,6 +89,12 @@ export default class GenerateGame {
     const mainRoot = document.createElement('div');
     mainRoot.setAttribute('id', 'm-root');
 
+    const nameTitleGame = document.createElement('h1');
+    nameTitleGame.classList.add('title-game')
+    nameTitleGame.textContent = 'Nonograms';
+
+    mainRoot.append(nameTitleGame);
+
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
 
@@ -268,7 +274,6 @@ function handlerClicks() {
       resultLength.push(item);
     }
   });
-  console.log(grayArray);
   if (resultLength.length === 0 && grayArray.length === 0) {
     generateSoundForWin();
     let nameGameToAlert = nameGameForModal(nameGame);

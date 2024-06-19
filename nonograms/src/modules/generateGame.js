@@ -106,6 +106,10 @@ export default class GenerateGame {
     nameGame.classList.add('name-game');
     nameGame.textContent = 'Nonograms';
 
+    const developer = document.createElement('p');
+    developer.textContent = 'Developed by Ashot Bahiran';
+    developer.classList.add('developer');
+
     const timer = document.createElement('p');
     timer.setAttribute('id', 'timer');
     timer.classList.add('count-time');
@@ -164,7 +168,7 @@ export default class GenerateGame {
     fieldsWrapper.append(elementsWrapper);
 
     root.append(timer, fieldsWrapper);
-    mainRoot.append(root);
+    mainRoot.append(root, developer);
     document.body.append(mainRoot);
 
     this.promptLeft();

@@ -23,6 +23,18 @@ body {
   padding: 15px 0;
 }
 
+.developer {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  color: white;
+  background: black;
+  padding: 0 6px;
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

@@ -2,7 +2,7 @@ import { nameGameForModal } from '../index';
 import { nameGame } from '../index';
 import { matrices } from './data';
 import { winInGame, leftClick, rightClick } from '../assets/audio/sounds';
-import { playAudio, showModalWindow } from './helpers';
+import { correctStyle, playAudio, showModalWindow } from './helpers';
 
 let intervalRunning = false;
 let handlerInterval;
@@ -86,6 +86,9 @@ export default class GenerateGame {
     seconds = 0;
     minutes = 0;
 
+    const mainRoot = document.createElement('div');
+    mainRoot.setAttribute('id', 'm-root');
+
     const root = document.createElement('div');
     root.setAttribute('id', 'root');
 
@@ -118,30 +121,36 @@ export default class GenerateGame {
             newElem.classList.add('base-elem', 'elem', 'black', `row${i}-${j}`);
             newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
+            root.style.width = '23.8em'
           } else {
             newElem.classList.add('base-elem', 'elem', 'gray', `row${i}-${j}`);
             newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
+            root.style.width = '23.8em';
           }
         } else if (matrix.length > 5 && matrix.length <= 10) {
           if (matrix[i][j]) {
             newElem.classList.add('base-elem', 'elem2', 'black', `row${i}-${j}`);
             newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
+            root.style.width = '25.8em';
           } else {
             newElem.classList.add('base-elem', 'elem2', 'gray', `row${i}-${j}`);
             newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
+            root.style.width = '25.8em';
           }
         } else if (matrix.length > 10) {
           if (matrix[i][j]) {
             newElem.classList.add('base-elem', 'elem3', 'black', `row${i}-${j}`);
             newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
+            root.style.width = '26.8em';
           } else {
             newElem.classList.add('base-elem', 'elem3', 'gray', `row${i}-${j}`);
             newElem.addEventListener('click', generateTimer);
             elementsWrapper.append(newElem);
+            root.style.width = '26.8em';
           }
         }
       }
@@ -149,7 +158,8 @@ export default class GenerateGame {
     fieldsWrapper.append(elementsWrapper);
 
     root.append(timer, fieldsWrapper);
-    document.body.append(nameGame, root);
+    mainRoot.append(root);
+    document.body.append(mainRoot);
 
     this.promptLeft();
     this.promptTop();
@@ -174,12 +184,14 @@ export default class GenerateGame {
         newElem.classList.add('prompt-left__value2');
         newElem.textContent = value;
         root.append(newElem);
+        document.getElementById('root').style.width = '25.8em';
       } else if (this.resultArrayLeft.length > 10) {
         const newElem = document.createElement('div');
         const value = new String(this.resultArrayLeft[i]).replaceAll(',', ' | ');
         newElem.classList.add('prompt-left__value3');
         newElem.textContent = value;
         root.append(newElem);
+        document.getElementById('root').style.width = '26.8em'
       }
     }
 
@@ -368,8 +380,7 @@ export function choseNewGame() {
 }
 
 export function removeElements() {
-  document.querySelector('.name-game').remove();
-  document.getElementById('root').remove();
+  document.getElementById('m-root').remove();
 }
 
 export function showGameSolution() {
@@ -425,6 +436,7 @@ export function saveGameFunction() {
     const getCurrGameName = getNameFromLocalStorage();
     restoreOldGame(oldGame, topPrompt, leftPrompt, getCurrGameName);
     getOldTimeFromLocalStorage();
+    correctStyle();
   }
 }
 

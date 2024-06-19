@@ -1,14 +1,11 @@
 body {
   font-family: 'Russo One', sans-serif;
-  margin: 100px auto;
-  height: auto;
+  background: linear-gradient(70deg, blueviolet, pink);
+  height: 100vh;
   display: flex;
-  background-color: $bgbody;
-  color: $bgcolor;
   flex-wrap: wrap-reverse;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  gap: 25px;
 }
 
 .change-color {
@@ -52,11 +49,18 @@ th {
   bottom: 2rem;
   border: 2px solid;
   margin: 40px 0 0 0;
+  width: 23.8em;
   font-family: 'Tahoma', sans-serif;
 }
 
+#m-root {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+}
+
 .btn {
-  padding: 4px 15px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   background-color: $bgbuttons;
@@ -416,9 +420,9 @@ th {
 .input-wrapper {
   display: flex;
   flex-direction: column;
-  margin: 10px;
   gap: 10px;
-  width: 21rem;
+  width: 25%;
+  height: 100%;
   padding: 15px;
 }
 

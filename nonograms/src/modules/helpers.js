@@ -52,3 +52,14 @@ export function showModalWindow(nameGame, minutes, seconds) {
     document.body.append(modal);
   
 }
+
+export function correctStyle() {
+  const items = document.querySelectorAll('.base-elem');
+  if (items.length <= 25) {
+    document.getElementById('root').style.width = '23.8em';
+  } else if (items.length > 25 && items.length <= 100) {
+    document.getElementById('root').style.width = '25.8em';
+  } else if (items.length > 100) {
+    document.getElementById('root').style.width = '26.8em';
+  }
+}

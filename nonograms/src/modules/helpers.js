@@ -16,7 +16,15 @@ export function playAudio(audioSource) {
   }
 
   audioPlayer.src = audioSource;
-  audioPlayer.play();
+  var playPromise = audioPlayer.play();
+
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }
 }
 
 export function showModalWindow(nameGame, minutes, seconds) {

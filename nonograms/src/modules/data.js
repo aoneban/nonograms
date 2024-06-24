@@ -180,3 +180,16 @@ export const matrices = {
     [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
   ],
 };
+
+export const dataText = `<h1>Welcome to the Nonograms website!</h1><br>
+ Japanese crosswords are a very exciting type of graphic crosswords that develop 
+logic, imaginative thinking and erudition. You can solve Japanese 
+crosswords online right on the site, and we only wish you a pleasant solving.<br><br>
+<h3>Nonograms are a puzzle with simple rules and difficult solutions.</h3><br>
+The rules are simple.You have a grid with cells that should either be
+ filled in black or marked with a cross. To the left of each row there 
+ are numbers indicating the length of the chains of filled cells in this 
+ row. Above each column there are numbers indicating the length of the 
+ chains of filled cells in this column. Your goal is to correctly color 
+ all the necessary cells. Left-clicking on a cell paints it. Right click
+  - marks with a cross.`

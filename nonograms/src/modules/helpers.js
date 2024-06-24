@@ -1,3 +1,7 @@
+import { dataText } from "./data";
+import ImgOne from '../assets/images/nonogram_black.jpg';
+import ImgTwo from '../assets/images/nonogram_color.jpg';
+
 export function createAudioPlayer() {
   const audioContainer = document.createElement('div');
   audioContainer.setAttribute('id', 'audio-container');
@@ -27,7 +31,7 @@ export function playAudio(audioSource) {
   }
 }
 
-export function showModalWindow(nameGame, minutes, seconds) {
+export function showModalWindowFinish(nameGame, minutes, seconds) {
 
     const modal = document.createElement('div');
     modal.setAttribute('id', 'myModal');
@@ -59,6 +63,46 @@ export function showModalWindow(nameGame, minutes, seconds) {
     modal.append(content);
     document.body.append(modal);
   
+}
+
+export function showModalWindowStart(startGame) {
+
+  const modal = document.createElement('div');
+  modal.setAttribute('id', 'myModal');
+  modal.classList.add('modal2');
+
+  const content = document.createElement('div');
+  content.classList.add('modal-content2');
+
+  const greeting = document.createElement('p');
+  greeting.classList.add('last-game');
+  greeting.innerHTML = dataText;
+
+  const imageWrapper = document.createElement('div');
+  imageWrapper.classList.add('image-wrap')
+
+  const imageOne = new Image();
+  imageOne.classList.add('image-game');
+  imageOne.src = ImgOne;
+
+  const imageTwo = new Image();
+  imageTwo.classList.add('image-game');
+  imageTwo.src = ImgTwo;
+
+  const button = document.createElement('button');
+  button.classList.add('btn', 'btn-modal');
+  button.textContent = 'Start Game';
+  button.addEventListener('click', () => {
+    localStorage.setItem('key', 1);
+    modal.remove();
+    startGame;
+  } )
+  
+  imageWrapper.append(imageOne, imageTwo)
+  content.append(greeting, imageWrapper, button);
+  modal.append(content);
+  document.body.append(modal);
+
 }
 
 export function correctStyle() {

@@ -2,7 +2,7 @@ import { nameGameForModal } from '../index';
 import { nameGame } from '../index';
 import { matrices } from './data';
 import { winInGame, leftClick, rightClick } from '../assets/audio/sounds';
-import { correctStyle, playAudio, showModalWindow } from './helpers';
+import { correctStyle, playAudio, showModalWindowFinish } from './helpers';
 
 let intervalRunning = false;
 let handlerInterval;
@@ -283,7 +283,7 @@ function handlerClicks() {
     let nameGameToAlert = nameGameForModal(nameGame);
     const sec = (seconds - 1).toString().padStart(2, '0');
     const min = minutes.toString().padStart(2, '0');
-    showModalWindow(nameGameToAlert, min, sec);
+    showModalWindowFinish(nameGameToAlert, min, sec);
     localStorage.setItem(nameGameToAlert, `${min}:${sec}`);
     writeResultToTable(nameGameToAlert, counterResults);
     document.removeEventListener('click', generateTimer);
@@ -376,16 +376,6 @@ export function resetGameFunction() {
   const sec = seconds.toString().padStart(2, '0');
   const min = minutes.toString().padStart(2, '0');
   timer.innerHTML = `${min}:${sec}`;
-}
-
-export function choseNewGame() {
-  const drop = document.getElementById('myDropdown');
-  drop.addEventListener('click', (event) => {
-    removeElements();
-    const game = event.target.innerText;
-    const newGame = new GenerateGame(matrices[game]);
-    newGame.createGame(matrices[game]);
-  });
 }
 
 export function removeElements() {

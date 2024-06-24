@@ -1,22 +1,34 @@
 import './index.scss';
 import { matrices } from './modules/data';
 import GenerateGame from './modules/generateGame';
-import { createAudioPlayer } from './modules/helpers';
+import { createAudioPlayer, showModalWindowStart } from './modules/helpers';
 import {
   resetGameFunction,
   showGameSolution,
   saveGameFunction,
-  choseNewGame,
   removeElements,
   switchSoundInTheGame
 } from './modules/generateGame';
 
 export let nameGame;
 
-createAudioPlayer();
+window.addEventListener('load', () => {
+  const key = localStorage.getItem('key');
+  if (key) {
+    startGame()
+  } else {
+    const start = startGame();
+    showModalWindowStart(start);
+  }
+});
 
-const firstGame = new GenerateGame(matrices['Snake (5x5)']);
-firstGame.createGame(matrices['Snake (5x5)']);
+function startGame() {
+  const firstGameData = Object.keys(matrices);
+  const firstGame = new GenerateGame(matrices[firstGameData[0]]);
+  firstGame.createGame(matrices[firstGameData[0]]);
+  createAudioPlayer();
+  createInput();
+}
 
 function createInput() {
   const wrapper = document.createElement('div');
@@ -141,8 +153,6 @@ function createInput() {
   document.body.prepend(wrapper);
 }
 
-createInput();
-
 function handlerForInput() {
   const selectValue = document.getElementById('myInput');
   selectValue.addEventListener('click', function () {
@@ -153,8 +163,6 @@ function handlerForInput() {
 }
 
 handlerForInput();
-
-choseNewGame();
 
 function selectNewGame() {
   const chooseValue = document.getElementById('myInput');
@@ -189,6 +197,7 @@ function changeColorTheme() {
     document.getElementById('root').classList.add('change-color');
     document.getElementById('myDropdown').classList.add('change-color');
     document.querySelector('.input-wrapper').classList.add('input-dark');
+    document.querySelector('.title-game').classList.add('input-dark');
     const btn = document.querySelectorAll('.btn')
     btn.forEach(el => el.classList.add('new-btn'))
     const thElements = document.getElementsByTagName('th');
@@ -202,6 +211,7 @@ function changeColorTheme() {
     document.querySelector('.btn').classList.remove('new-btn');
     document.getElementById('myDropdown').classList.remove('change-color');
     document.querySelector('.input-wrapper').classList.remove('input-dark');
+    document.querySelector('.title-game').classList.remove('input-dark');
     const btn = document.querySelectorAll('.btn')
     btn.forEach(el => el.classList.remove('new-btn'))
     const thElements = document.getElementsByTagName('th');

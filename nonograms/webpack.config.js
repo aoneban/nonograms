@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    //publicPath: 'dist/'
   },
   mode: 'development',
   module: {
@@ -15,6 +16,18 @@ module.exports = {
         test: /\.html$/i,
         loader: 'html-loader',
         options: { minimize: false },
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              limit: 8192, // Если изображение меньше 8KB, оно будет закодировано в base64
+             name: 'images/[name].[hash].[ext]', // Схема именования файлов
+            },
+          },
+        ],
       },
       /*{
         test: /\.js$/,
@@ -56,5 +69,8 @@ module.exports = {
     compress: true,
     port: 3000,
     hot: true
+  },
+  resolve: {
+    extensions: ['.js'],
   },
 };

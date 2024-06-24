@@ -21,6 +21,7 @@ body {
   text-align: center;
   z-index: 0;
   padding: 15px 0;
+  background: rgb(228 153 88);
 }
 
 .developer {
@@ -85,7 +86,7 @@ th {
   background-color: $bgbuttons;
   font-family: "Russo One", sans-serif;
   color: #f2f2f2;
-  cursor: pointer;
+  cursor: pointer!important;
   &:hover {
     background-color: $btnhover;
     color: #f2f2f2;
@@ -171,7 +172,7 @@ th {
   text-align: center;
   border-right: 2px solid grey;
   &__value {
-    width: 4.6rem;
+    width: 4.7rem;
     height: 60px;
     display: flex;
     align-items: center;
@@ -221,7 +222,7 @@ th {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 7.92%;
+    padding: 0 7.88%;
     font-size: 0.7rem;
   }
 }
@@ -279,7 +280,7 @@ th {
   content: '';
   position: absolute;
   width: 2px;
-  left: 44%;
+  left: 46%;
   height: 100%;
   background-color: black;
 }

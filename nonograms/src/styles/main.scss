@@ -1,0 +1,537 @@
+body {
+  font-family: 'Russo One', sans-serif;
+  background: #f8d8a8;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: start;
+  align-items: center;
+}
+
+.change-color {
+  background-color: rgb(63, 59, 59) !important;
+  color: white;
+}
+
+.title-game {
+  position: fixed;
+  top: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  z-index: 0;
+  padding: 15px 0;
+  background: rgb(228 153 88);
+}
+
+.developer {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  color: white;
+  background: black;
+  padding: 0 6px;
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead,
+tbody {
+  border: 1px solid #dddddd;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+#timer {
+  font-family: 'Russo One', sans-serif;
+}
+
+#root {
+  position: relative;
+  background: $prompt;
+  bottom: 2rem;
+  border: 2px solid;
+  margin: 40px 0 0 0;
+  width: 23.8em;
+  font-family: 'Tahoma', sans-serif;
+}
+
+#m-root {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: $bgbuttons;
+  font-family: "Russo One", sans-serif;
+  color: #f2f2f2;
+  cursor: pointer!important;
+  &:hover {
+    background-color: $btnhover;
+    color: #f2f2f2;
+  }
+}
+
+.new-btn {
+  background-color: antiquewhite !important;
+  color: rgb(42, 30, 30) !important;
+}
+
+.field-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elements-wrapper {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  cursor: pointer !important;
+}
+
+.black {
+  border: 1px solid gray;
+  background-color: black;
+}
+
+.black2 {
+  border: 1px solid gray;
+  background-color: black;
+}
+
+.show-color {
+  background-color: black !important;
+}
+
+.gray {
+  width: 20%;
+  height: 60px;
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.gray2 {
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.elem {
+  width: 20%;
+  height: 60px;
+  background-color: white;
+  position: relative;
+  cursor: pointer !important;
+}
+
+.elem2 {
+  width: 10%;
+  height: 30px;
+  background-color: white;
+  position: relative;
+  cursor: pointer !important;
+}
+
+.elem3 {
+  width: 6.66%;
+  height: 18px;
+  background-color: white;
+  position: relative;
+  cursor: pointer !important;
+}
+
+.num {
+  display: block;
+}
+
+.prompt-left {
+  text-align: center;
+  border-right: 2px solid grey;
+  &__value {
+    width: 4.7rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    border-top: 1px solid;
+  }
+  &__value2 {
+    width: 6.8rem;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 0.7rem;
+    border-top: 1px solid;
+    padding: 0 8px 0 0;
+  }
+  &__value3 {
+    width: 7.85rem;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 0.7rem;
+    border-top: 1px solid;
+    position: relative;
+    z-index: 1;
+    padding: 0 7px 0 0;
+  }
+}
+
+.prompt-top {
+  display: flex;
+  flex-direction: row;
+  width: 99.88%;
+  height: 80px;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+  &__value {
+    display: flex;
+    word-wrap: break-word;
+    width: 18px;
+    border-left: 1px solid;
+    border-bottom: 2px solid grey;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 7.88%;
+    font-size: 0.7rem;
+  }
+}
+
+.prompt-top2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 110px;
+  align-items: center;
+  justify-content: end;
+  &__value2 {
+    display: flex;
+    word-wrap: break-word;
+    width: 30px;
+    border-left: 1px solid;
+    border-bottom: 2px solid grey;
+    height: 100%;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+    padding: 0 13px 8px 13px;
+    font-size: 0.7rem;
+  }
+}
+
+.prompt-top3 {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 120px;
+  align-items: center;
+  justify-content: end;
+  &__value3 {
+    display: flex;
+    word-wrap: break-word;
+    width: 4.7%;
+    border-left: 1px solid;
+    border-bottom: 2px solid grey;
+    height: 100%;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+    padding: 5px 1px 7px 2px;
+    font-size: 0.7rem;
+  }
+}
+
+.crossed {
+  position: relative;
+}
+
+.crossed::before,
+.crossed::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  left: 46%;
+  height: 100%;
+  background-color: black;
+}
+
+.crossed::before {
+  transform: rotate(45deg);
+}
+
+.crossed::after {
+  transform: rotate(-45deg);
+}
+
+.row0-4,
+.row1-4,
+.row2-4,
+.row3-4,
+.row4-4,
+.row5-4,
+.row6-4,
+.row7-4,
+.row8-4,
+.row9-4,
+.row10-4,
+.row11-4,
+.row12-4,
+.row13-4,
+.row14-4,
+.row0-9,
+.row1-9,
+.row2-9,
+.row3-9,
+.row4-9,
+.row5-9,
+.row6-9,
+.row7-9,
+.row8-9,
+.row9-9,
+.row10-9,
+.row11-9,
+.row12-9,
+.row13-9,
+.row14-9 {
+  border-right: 2px solid gray;
+}
+
+.row0-5,
+.row1-5,
+.row2-5,
+.row3-5,
+.row4-5,
+.row5-5,
+.row6-5,
+.row7-5,
+.row8-5,
+.row9-5,
+.row10-5,
+.row11-5,
+.row12-5,
+.row13-5,
+.row14-5,
+.row0-10,
+.row1-10,
+.row2-10,
+.row3-10,
+.row4-10,
+.row5-10,
+.row6-10,
+.row7-10,
+.row8-10,
+.row9-10,
+.row10-10,
+.row11-10,
+.row12-10,
+.row13-10,
+.row14-10 {
+  border-left: 2px solid gray;
+}
+
+.row4-0,
+.row4-1,
+.row4-2,
+.row4-3,
+.row4-4,
+.row4-5,
+.row4-6,
+.row4-7,
+.row4-8,
+.row4-9,
+.row9-0,
+.row9-1,
+.row9-2,
+.row9-3,
+.row9-4,
+.row9-5,
+.row9-6,
+.row9-7,
+.row9-8,
+.row9-9,
+.row9-10,
+.row9-11,
+.row9-12,
+.row9-13,
+.row9-14,
+.row4-10,
+.row4-11,
+.row4-12,
+.row4-13,
+.row4-14 {
+  border-bottom: 2px solid gray;
+}
+
+.row5-0,
+.row5-1,
+.row5-2,
+.row5-3,
+.row5-4,
+.row5-5,
+.row5-6,
+.row5-7,
+.row5-8,
+.row5-9,
+.row10-0,
+.row10-1,
+.row10-2,
+.row10-3,
+.row10-4,
+.row10-5,
+.row10-6,
+.row10-7,
+.row10-8,
+.row10-9,
+.row10-10,
+.row10-11,
+.row10-12,
+.row10-13,
+.row10-14,
+.row5-10,
+.row5-11,
+.row5-12,
+.row5-13,
+.row5-14 {
+  border-top: 2px solid gray;
+}
+
+#myDropdown {
+  display: none;
+  padding: 8px;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.class-block {
+  display: block !important;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 25%;
+  height: 100%;
+  padding: 35px 25px 15px 25px;
+  z-index: 1;
+}
+
+.input-wrapper,
+.bac-input {
+  background-color: rgb(231, 164, 106);
+}
+
+.input-dark {
+  background-color: #645656!important;
+}
+
+#myInput {
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid $bgbuttons;
+  font-family: "Russo One", sans-serif;
+}
+
+.count-time {
+  border-bottom: 2px solid;
+  text-align: center;
+}
+
+.class-block a:hover {
+  cursor: pointer;
+  background-color: $prompt;
+}
+
+
+@media (max-width: 1300px) {
+ 
+  .input-wrapper {
+    width: 35%;
+  }
+
+  #m-root {
+    width: 65%;
+  }
+}
+
+@media (max-width: 1000px) {
+ 
+  .input-wrapper {
+    width: 45%;
+  }
+
+  #m-root {
+    width: 55%;
+  }
+}
+
+@media (max-width: 730px) {
+
+  body {
+    height: auto;
+    flex-direction: column;
+  }
+ 
+  .input-wrapper {
+    width: 65%;
+  }
+
+  .developer {
+    bottom: 3px;
+  }
+}
+
+@media (max-width: 580px) {
+ 
+  .input-wrapper {
+    width: 75%;
+  }
+}
+
+@media (max-width: 500px) {
+ 
+  .input-wrapper {
+    width: 85%;
+  }
+}
+
+@media (max-width: 450px) {
+ 
+  .input-wrapper {
+    width: 95%;
+  }
+}
